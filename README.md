@@ -1,4 +1,7 @@
-﻿## Getting Started
+﻿## Status
+[![python](https://github.com/DudeRandom21/Stop-uOttawa-Surveillance/workflows/python/badge.svg)](https://github.com/DudeRandom21/Stop-uOttawa-Surveillance/actions?query=workflow%3Apython)
+
+## Getting Started
 
 Run the installation script with the optional hooks
 
@@ -24,7 +27,6 @@ The front-end is based on [create-react-app](https://github.com/facebook/create-
 
 The back-end is based on [Flask](https://github.com/pallets/flask).
 
-The front-end is served on http://localhost:3000/ and the back-end on http://localhost:3001/.
 
 ## Additional Documentation
 

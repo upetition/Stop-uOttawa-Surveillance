@@ -23,7 +23,7 @@ def catch_all(path):
 
 
 # Route to get the text copy of a page
-@app.route('/copy/<page:str>')
+@app.route('/copy/<string:page>')
 def get_copy_for(page):
     '''
     Route to get the text copy of a page
@@ -40,15 +40,15 @@ def add_student():
     '''
 
 
-@app.route('/verify/<id:str>')
-def verify_student(id):
+@app.route('/verify/<string:_id>')
+def verify_student(_id):
     '''
     Uses the ID that was sent to the student's email to set them as confirmed
     in the database.
     '''
 
 
-@app.route('/delete/<student_number:int>')
+@app.route('/delete/<int:student_number>')
 def delete_student(student_number):
     '''
     Uses the student number to trigger the deletion process for a student from the database.

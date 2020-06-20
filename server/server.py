@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, make_response, send_from_directory
 from os.path import exists, join
 
-from constants import CONSTANTS
+from server.constants import CONSTANTS
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__, static_folder='build')
 

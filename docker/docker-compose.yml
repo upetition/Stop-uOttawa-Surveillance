@@ -1,12 +1,27 @@
-version '3'
+version: '3'
 
 services:
-  fullstack:
+  frontend:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/frontend.dockerfile
+    image: frontend
+    stdin_open: true
     volumes:
       - "../:/app"
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/backend.dockerfile
+    image: backend
+    env_file:
+      - ../.flaskenv
+    volumes:
+      - "../:/app"
+  router:
+    build:
+      context: ..
+      dockerfile: docker/nginx.dockerfile
+    image: router
     ports:
-      - "3001:3001"
-      - "3001:3001"
+      - "80:80"

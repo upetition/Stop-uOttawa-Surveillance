@@ -6,7 +6,7 @@ services:
       context: ..
       dockerfile: docker/frontend.dockerfile
     image: frontend
-    stdin_open: true
+    stdin_open: true  # Required for running the frontend server
     volumes:
       - "../:/app"
   backend:
@@ -23,5 +23,8 @@ services:
       context: ..
       dockerfile: docker/nginx.dockerfile
     image: router
+    depends_on:
+      - backend
+      - frontend
     ports:
       - "80:80"

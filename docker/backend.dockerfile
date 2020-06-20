@@ -2,9 +2,17 @@ FROM python:3.8-slim-buster
 
 WORKDIR /app
 
-COPY . /app
+COPY ./server /app/server
 
-COPY ./run-backend.sh /app/run-backend.sh
+COPY .flaskenv /app
+
+COPY setup.cfg /app
+
+COPY setup.py /app
+
+COPY ./run-backend.sh /app
+
+COPY requirements.txt /app
 
 RUN pip install -r requirements.txt .
 

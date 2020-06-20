@@ -26,7 +26,7 @@ $ docker-compose -f docker/docker-compose.yml build frontend backend router # sa
 $ docker-compose -f docker/docker-compose.yml build frontend # build just the frontend container
 ```
 
-Finally, run the containers. It is recommended if you are debugging the Python application that you start up the backend container individually with `docker-compose -f docker/docker-compose.yml run frontend` so any breakpoints in the code allow you to interact with it on the terminal.
+Finally, run the containers. It is recommended if you are debugging the Python application that you start up the backend container individually with `docker-compose -f docker/docker-compose.yml run backend` so any breakpoints in the code allow you to interact with it on the terminal.
 
 ```bash
 $ docker-compose -f docker/docker-compose.yml up frontend router # Either run in a different terminal or run with -d

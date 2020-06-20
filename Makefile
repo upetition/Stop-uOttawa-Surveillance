@@ -36,7 +36,7 @@ run-back:
 .PHONY: teardown
 teardown: ## Shuts down the containers (if running) and removes their images
 	docker-compose \
-		-f docker/docker-compose.yaml \
+		-f docker/docker-compose.yml \
 		down --rmi all
 
 .PHONY: rebuild

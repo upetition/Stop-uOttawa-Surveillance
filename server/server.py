@@ -38,7 +38,6 @@ def add_student():
     and adds it to the database. Also triggers a job to send the confirmation email
     to the student to verify that they are actually a uottawa student
     '''
-    breakpoint()
 
 
 @app.route('/verify/<id:str>')

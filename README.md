@@ -9,7 +9,31 @@ Run the installation script with the optional hooks
 $ ./install --hooks
 ```
 
-To start the server locally, run `npm start`
+Make sure you add `stopuottawa.local` to your `/etc/hosts` file so it routes you correctly.
+
+## Running with docker
+To run the full application with docker, you must start the frontend, backend, and router containers.
+
+First, copy the `.flaskenv.example` and `.env.example` files to `.flaskenv` and `.env` respectively. Set the variables in those files as you need them.
+
+> **NOTE** The `PORT` variable needs to match the port that is being proxied for the frontend server. Similarly, the `FLASK_RUN_PORT` variable needs to match for the port that is being proxied for the backend server
+
+Next, build the containers with docker. You can build the containers individually or use the Make commands that have been added for this
+
+```bash
+$ docker-compose -f docker/docker-compose.yml build  # builds all of them
+$ docker-compose -f docker/docker-compose.yml build frontend backend router # same as above
+$ docker-compose -f docker/docker-compose.yml build frontend # build just the frontend container
+```
+
+Finally, run the containers. It is recommended if you are debugging the Python application that you start up the backend container individually with `docker-compose -f docker/docker-compose.yml run frontend` so any breakpoints in the code allow you to interact with it on the terminal.
+
+```bash
+$ docker-compose -f docker/docker-compose.yml up frontend router # Either run in a different terminal or run with -d
+$ docker-compose -f docker/docker-compose.yml run backend
+```
+
+Finally, open your browser and go to `stopuottawa.local` to see the website!
 
 ## Next Steps
 

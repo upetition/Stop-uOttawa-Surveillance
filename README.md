@@ -9,7 +9,7 @@ Run the installation script with the optional hooks
 $ ./install --hooks
 ```
 
-Make sure you add `stopuottawa.local` to your `/etc/hosts` file so it routes you correctly.
+Make sure you add `upetition.local` to your `/etc/hosts` file so it routes you correctly.
 
 ## Running with docker
 To run the full application with docker, you must start the frontend, backend, and router containers.
@@ -33,7 +33,7 @@ $ docker-compose -f docker/docker-compose.yml up frontend router # Either run in
 $ docker-compose -f docker/docker-compose.yml run backend
 ```
 
-Finally, open your browser and go to `stopuottawa.local` to see the website!
+Finally, open your browser and go to `upetition.local` to see the website!
 
 ## Next Steps
 

@@ -10,5 +10,5 @@ CONSTANTS = {
     'DB_USERNAME': os.environ.get('DB_USERNAME'),
     'DB_PASSWORD': os.environ.get('DB_PASSWORD'),
     'ENV': os.environ.get('FLASK_ENV'),
-
+    'DB_TYPE': os.environ.get('DB_TYPE')
 }

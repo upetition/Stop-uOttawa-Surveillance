@@ -1,0 +1,49 @@
+name: pull_request
+
+on:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.6', '3.7', '3.8']
+    name: Testing ${{ github.repository }} with python ${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies and script
+        run: pip install -r requirements.txt -e .
+
+      - name: Install test dependencies
+        run: pip install -r test-requirements.txt
+
+      - name: Lint with flake8
+        run: flake8
+
+      # No tests yet, enable this later
+      # - name: Test with pytest
+      #   run: pytest
+  build:
+    needs: pytest
+    runs-on: ubuntu-latest
+    name: Building all docker containers
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the backend container with compose
+        run: docker-compose -f docker/docker-compose.yml build backend
+
+      - name: Build the frontend container with compose
+        run: docker-compose -f docker/docker-compose.yml build frontend
+
+      - name: Build the router container with compose
+        run: docker-compose -f docker/docker-compose.yml build router
+
+      - name: Perform cleanup
+        if: ${{ always() }}
+        run: docker-compose -f docker/docker-compose.yml down --rmi all

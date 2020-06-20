@@ -35,6 +35,9 @@ jobs:
     name: Building all docker containers
     steps:
       - uses: actions/checkout@v2
+      - name: Use example env files as testing env files
+        run: cp .flaskenv.example .flaskenv && cp .env.example .env
+
       - name: Build the backend container with compose
         run: docker-compose -f docker/docker-compose.yml build backend
 

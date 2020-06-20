@@ -1,7 +1,7 @@
 from flask import Flask
 from server.constants import CONSTANTS
 from server.controllers.abc import DatabaseDriver
-from server.controller.mongo import MongoDriver
+from server.controllers.mongo import MongoDriver
 import logging
 
 logging.basicConfig(level=logging.DEBUG)

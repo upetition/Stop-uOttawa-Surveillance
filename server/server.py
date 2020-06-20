@@ -1,12 +1,16 @@
-from flask import Flask, jsonify, make_response, send_from_directory
+from flask import (
+    jsonify,
+    make_response,
+    send_from_directory
+)
 from os.path import exists, join
 
+from server import (  # noqa: F401
+    app,
+    db
+)
 from server.constants import CONSTANTS
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
-
-app = Flask(__name__, static_folder='build')
+import logging  # noqa: F401
 
 
 # Catching all routes
@@ -19,7 +23,7 @@ def catch_all(path):
 
 
 # Route to get the text copy of a page
-@app.route('/api/copy/<page:str>')
+@app.route('/copy/<page:str>')
 def get_copy_for(page):
     '''
     Route to get the text copy of a page
@@ -27,16 +31,17 @@ def get_copy_for(page):
     pass
 
 
-@app.route('/api/add/student')
+@app.route('/add/student')
 def add_student():
     '''
     Extracts the name, student number, and uottawa email from the request body
     and adds it to the database. Also triggers a job to send the confirmation email
     to the student to verify that they are actually a uottawa student
     '''
+    breakpoint()
 
 
-@app.route('/api/verify/<id:str>')
+@app.route('/verify/<id:str>')
 def verify_student(id):
     '''
     Uses the ID that was sent to the student's email to set them as confirmed
@@ -44,14 +49,14 @@ def verify_student(id):
     '''
 
 
-@app.route('/api/delete/<student_number:int>')
+@app.route('/delete/<student_number:int>')
 def delete_student(student_number):
     '''
     Uses the student number to trigger the deletion process for a student from the database.
     '''
 
 
-@app.route('/api/count/verified')
+@app.route('/count/verified')
 def count_verified():
     '''
     Get the total number of verified petition signers

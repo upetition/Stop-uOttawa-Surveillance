@@ -18,14 +18,14 @@ build: ## Build the docker containers
 .PHONY: run-detach
 run-detach: ## Run the docker containers detached
 	docker-compose \
-		-f docker/docker-compose.yml \
+		-f docker/docker-compose.yml -f docker/db.yml \
 		up -d
 
 .PHONY: run-front
 run-front: ## Run frontend and router docker containers detached from the terminal
 	docker-compose \
-		-f docker/docker-compose.yml \
-		up -d router frontend
+		-f docker/docker-compose.yml -f docker/db.yml \
+		up -d router frontend mongodb
 
 .PHONY: run-back
 run-back:

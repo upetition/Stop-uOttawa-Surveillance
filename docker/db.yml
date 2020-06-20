@@ -1,0 +1,7 @@
+version: '3'
+
+service:
+  mongodb:
+    image: mongo:latest
+    env_file:
+      - ../.mongoenv

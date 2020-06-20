@@ -1,4 +1,4 @@
-from nginx:latest
+FROM nginx:latest
 
 RUN rm /etc/nginx/conf.d/*
 

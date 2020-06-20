@@ -30,7 +30,7 @@ run-front: ## Run frontend and router docker containers detached from the termin
 .PHONY: run-back
 run-back:
 	docker-compose \
-		-f docker/docker-compose.yml \
+		-f docker/docker-compose.yml -f db.yml \
 		run backend
 
 .PHONY: teardown

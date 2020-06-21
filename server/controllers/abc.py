@@ -5,9 +5,6 @@ class DatabaseDriver:
     def __init__(self, database_client=None):
         self.database_client = database_client
 
-    def get(self, data):
-        raise NotImplementedError()
-
     def add(self, data):
         raise NotImplementedError()
 

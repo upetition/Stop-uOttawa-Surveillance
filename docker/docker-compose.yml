@@ -19,6 +19,9 @@ services:
     volumes:
       - "../:/app"
   router:
+    depends_on:
+      - frontend
+      - backend
     build:
       context: ..
       dockerfile: docker/nginx.dockerfile

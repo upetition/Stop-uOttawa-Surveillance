@@ -3,7 +3,7 @@
 
 class DatabaseDriver:
     def __init__(self, database_client=None):
-        self.client = database_client
+        self.database_client = database_client
 
     def get(self, data):
         raise NotImplementedError()

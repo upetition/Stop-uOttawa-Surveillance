@@ -5,7 +5,13 @@ from server.controllers.abc import DatabaseDriver
 
 class MongoDriver(DatabaseDriver):
     def __init__(self, app, host, port, user, pssw):
-        client = PyMongo(app, uri=f'mongodb://{host}:{port}/stopUOttawaSurvaillance').db.signers
+        client = PyMongo(
+            app,
+            uri=f'mongodb://{host}:{port}/stopUOttawaSurvaillance',
+            username=user,
+            password=pssw,
+            authSource='admin'
+        ).db.signers
         super(MongoDriver, self).__init__(client)
 
     def add(self, data: dict):

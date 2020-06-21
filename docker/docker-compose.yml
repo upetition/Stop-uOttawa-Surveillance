@@ -23,8 +23,5 @@ services:
       context: ..
       dockerfile: docker/nginx.dockerfile
     image: router
-    depends_on:
-      - backend
-      - frontend
     ports:
       - "80:80"

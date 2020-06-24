@@ -18,11 +18,11 @@ const NavBar = () => {
           <Link className="nav-item nav-link active" to="/">
             Home
           </Link>
-          <Link className="nav-item nav-link active" to="Privacy">
-            Privacy
-          </Link>
           <Link className="nav-item nav-link active" to="Petition">
             Petition
+          </Link>
+          <Link className="nav-item nav-link active" to="Privacy">
+            Privacy
           </Link>
         </div>
       </nav>

@@ -6,7 +6,8 @@ import {
     FormControlLabel,
     Button,
     CircularProgress,
-    Snackbar
+    Snackbar,
+    Card
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -23,6 +24,16 @@ const PetitionForm = () => {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
+  const [failText, setFailText] = useState("Something went wrong...");
+
+  const enableSubmit = (
+    studentNumber !== "" &&
+    name !== "" &&
+    email !== "" &&
+    privacyCheck &&
+    consentCheck &&
+    !sending
+  );
 
   const handleAlertClose = (type) => (e, r) => {
       if (r === 'clickaway') {
@@ -30,6 +41,7 @@ const PetitionForm = () => {
       }
 
       type(false);
+      setFailText("Something went wrong...")
   }
 
   const handleClick = () => {
@@ -49,15 +61,21 @@ const PetitionForm = () => {
       const url = "/api/add/student";
 
       fetch(url, queryParams)
-      .then(data => {return data.json()})
+      .then(data => { return data.json()})
       .then(res => {
-          console.log(res);
-          if(res.status === 200) {
-              setSuccess(true);
+        if (res.created) {
+          setSuccess(true);
+        }
+        else if (res.created !== undefined && !res.created) {
+          if (res.error !== undefined) {
+            setFailText(res.error)
           }
-          else {
-              setFailure(true);
-          }
+          setFailure(true);
+        }
+        else {
+          setFailText("Something went wrong...")
+          setFailure(true);
+        }
       })
       .then(() => setSending(false))
       .catch(error => {
@@ -69,8 +87,9 @@ const PetitionForm = () => {
   };
 
   return (
+    <Card>
       <main>
-      <div className="container">
+      <div className="container m-0 p-5">
         <div className="row justify-content-center p-0">
           <span className="p-2">
             <TextField
@@ -127,7 +146,7 @@ const PetitionForm = () => {
               <Button
                 variant="outlined"
                 color="primary"
-                disabled={sending}
+                disabled={!enableSubmit}
                 className="justify-right"
                 onClick={handleClick}
                 >
@@ -155,12 +174,13 @@ const PetitionForm = () => {
           onClose={handleAlertClose(setFailure)}
         >
             <Alert onClose={handleAlertClose(setFailure)} severity="error">
-                Something has gone wrong...
+                 {failText}
             </Alert>
         </Snackbar>
 
       </div>
       </main>
+      </Card>
   );
 }
 export default PetitionForm;

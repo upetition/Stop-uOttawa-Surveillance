@@ -73,7 +73,7 @@ def add_student():
         student_data
     )
 
-    return jsonify({'added_id': str(_id)})
+    return jsonify({'added_id': str(_id), 'created': True})
 
 
 @app.route('/verify/<string:_id>')

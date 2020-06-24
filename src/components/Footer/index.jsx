@@ -19,12 +19,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a className={styles.footerlink} href="/">
+                <a className={styles.footerlink} href="/petition">
                   Petition
                 </a>
               </li>
               <li>
-                <a className={styles.footerlink} href="/">
+                <a className={styles.footerlink} href="/privacy">
                   Privacy
                 </a>
               </li>

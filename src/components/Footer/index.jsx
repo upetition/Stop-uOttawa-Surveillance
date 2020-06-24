@@ -7,26 +7,25 @@ const Footer = () => {
       <div className="container-fluid">
         <div className="row justify-content-around">
           <div className="col-8 col-md-5">
-            <h5 className={styles.title}>StopUOttawaSurvaillance</h5>
             <p className={styles.description}>
-              This is placeholder text. Your web app description goes here.
+              View the code for this website on <a href="https://github.com/DudeRandom21/Stop-uOttawa-Surveillance">GitHub</a>
             </p>
           </div>
           <div className="col-2">
             <ul className="list-unstyled">
               <li>
                 <a className={styles.footerlink} href="/">
-                  Example Link
+                  Home
                 </a>
               </li>
               <li>
                 <a className={styles.footerlink} href="/">
-                  Example Link
+                  Petition
                 </a>
               </li>
               <li>
                 <a className={styles.footerlink} href="/">
-                  Example Link
+                  Privacy
                 </a>
               </li>
             </ul>

@@ -48,7 +48,7 @@ def add_student():
     student_email = data['student_email']
 
     if not re.search('@uottawa.ca$', student_email):
-        error = jsonify({'error': 'Email msut be a university of ottawa email', 'created': False})
+        error = jsonify({'error': 'Email must be a university of ottawa email', 'created': False})
         return make_response(error, 400)
 
     student_name = data['student_name']
@@ -66,12 +66,12 @@ def add_student():
         'verified': False
     }
 
+    _id = db.add(student_data)
+
     logging.debug(
         'Added student to petition. data=%s',
         student_data
     )
-
-    _id = db.add(student_data)
 
     return jsonify({'added_id': str(_id)})
 

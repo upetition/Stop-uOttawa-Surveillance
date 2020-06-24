@@ -8,6 +8,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__, static_folder='build')
+
 db: DatabaseDriver = None
 
 if CONSTANTS['DB_TYPE'] == 'mongo':

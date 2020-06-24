@@ -15,6 +15,8 @@ from server.constants import CONSTANTS
 import logging  # noqa: F401
 import re
 
+logger = logging.getLogger(__file__)
+
 
 # Catching all routes
 # This route is used to serve all the routes in the frontend application after deployment.
@@ -31,7 +33,7 @@ def get_copy_for(page):
     '''
     Route to get the text copy of a page
     '''
-    logging.info('Hit route %s', request.path)
+    logger.info('Hit route %s', request.path)
     pass
 
 
@@ -42,7 +44,7 @@ def add_student():
     and adds it to the database. Also triggers a job to send the confirmation email
     to the student to verify that they are actually a uottawa student
     '''
-    logging.info('Hit route %s', request.path)
+    logger.info('Hit route %s', request.path)
     data = request.get_json()
 
     student_email = data['student_email']
@@ -68,7 +70,7 @@ def add_student():
 
     _id = db.add(student_data)
 
-    logging.debug(
+    logger.debug(
         'Added student to petition. data=%s',
         student_data
     )
@@ -82,7 +84,7 @@ def verify_student(_id):
     Uses the ID that was sent to the student's email to set them as confirmed
     in the database.
     '''
-    logging.info('Hit route %s', request.path)
+    logger.info('Hit route %s', request.path)
     try:
         obj_id = ObjectId(_id)
     except Exception:
@@ -104,8 +106,8 @@ def delete_student(student_number):
     '''
     Uses the student number to trigger the deletion process for a student from the database.
     '''
-    logging.info('Hit route %s', request.path)
-    logging.debug('Deleting student with student number %d', student_number)
+    logger.info('Hit route %s', request.path)
+    logger.debug('Deleting student with student number %d', student_number)
     db.delete({'student_number': student_number})
 
 
@@ -114,7 +116,7 @@ def count_verified():
     '''
     Get the total number of verified petition signers
     '''
-    logging.info('Hit route %s', request.path)
+    logger.info('Hit route %s', request.path)
 
     count = db.count_records({'verified': True})
 
@@ -124,8 +126,8 @@ def count_verified():
 # Error Handler
 @app.errorhandler(404)
 def page_not_found(error):
-    logging.info('Hit route %s', request.path)
-    logging.warning('Route does not exist')
+    logger.info('Hit route %s', request.path)
+    logger.warning('Route does not exist')
     json_response = jsonify({'error': 'Page not found'})
     return make_response(json_response, CONSTANTS['HTTP_STATUS']['404_NOT_FOUND'])
 

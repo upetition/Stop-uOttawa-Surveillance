@@ -4,16 +4,21 @@ from server.controllers.abc import DatabaseDriver
 from server.controllers.mongo import MongoDriver
 from server.controllers.firestore import FirestoreDriver
 import logging
+import os
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(
+    format=f"[%(asctime)s] [{os.getpid()}] [%(levelname)s] - %(name)s - %(message)s",
+    level=logging.INFO,
+    datefmt='%Y/%m/%d %H:%M:%S %z')
 
+logger = logging.getLogger(__file__)
 app = Flask(__name__, static_folder='build')
 
 db: DatabaseDriver = None
 
 if CONSTANTS['DB_TYPE'] == 'mongo':
-    logging.warning('DB type is local, using Mongo driver.')
-    logging.warning('Do not use this in production!!')
+    logger.warning('DB type is local, using Mongo driver.')
+    logger.warning('Do not use this in production!!')
     db = MongoDriver(
         app,
         CONSTANTS['DB_HOST'],

@@ -4,5 +4,10 @@ setup(
     name="stop_uottawa_survaillance_backend",
     packages=['server', 'server.controllers', 'server.strings'],
     version='0.1.dev0',
-    install_requires=['flask', 'python-dotenv', 'gunicorn', 'flask-pymongo'],
+    install_requires=[
+        'flask',
+        'python-dotenv',
+        'gunicorn',
+        'flask-pymongo',
+        'google-cloud-firestore'],
 )

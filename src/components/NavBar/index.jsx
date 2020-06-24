@@ -12,7 +12,7 @@ const NavBar = () => {
       </div>
       <nav className="navbar navbar-expand-sm navbar-light border-bottom justify-content-between">
         <Link className="navbar-brand" to="/">
-          Stop uOttawa Survaillance
+          Stop uOttawa surveillance
         </Link>
         <div className="navbar-nav">
           <Link className="nav-item nav-link active" to="/">

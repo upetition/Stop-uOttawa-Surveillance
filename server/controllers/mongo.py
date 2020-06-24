@@ -7,7 +7,7 @@ class MongoDriver(DatabaseDriver):
     def __init__(self, app, host, port, user, pssw):
         client = PyMongo(
             app,
-            uri=f'mongodb://{host}:{port}/stopUOttawaSurvaillance',
+            uri=f'mongodb://{host}:{port}/stopUOttawasurveillance',
             username=user,
             password=pssw,
             authSource='admin'

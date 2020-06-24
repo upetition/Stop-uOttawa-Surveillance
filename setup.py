@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="stop_uottawa_survaillance_backend",
+    name="stop_uottawa_surveillance_backend",
     packages=['server', 'server.controllers', 'server.strings'],
     version='0.1.dev0',
     install_requires=[

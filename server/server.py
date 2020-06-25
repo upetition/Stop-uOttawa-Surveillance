@@ -1,4 +1,3 @@
-from bson import ObjectId
 from flask import (
     jsonify,
     make_response,
@@ -89,13 +88,7 @@ def verify_student(_id):
     in the database.
     '''
     logger.info('Hit route %s', request.path)
-    try:
-        obj_id = ObjectId(_id)
-    except Exception:
-        error = jsonify({'error': 'A problem has occurred with the id', 'verified': False})
-        return make_response(error, 400)
-
-    updated = db.update({'_id': obj_id}, {'verified': True})
+    updated = db.set_verified(_id)
 
     if updated:
         return jsonify({'msg': 'User verified successfully', 'verified': True})

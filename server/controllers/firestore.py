@@ -66,9 +66,6 @@ class FirestoreDriver(DatabaseDriver):
         return True
 
     def count_records(self, identifier):
-        if not any((_id in self.valid_counts for _id in identifier.keys())):
-            raise TypeError('Cannot count records with this identifier')
-
         if 'total' in identifier:
             return self.metadata.get().to_dict()['total_documents']
 

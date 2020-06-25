@@ -15,6 +15,15 @@ class FirestoreDriver(DatabaseDriver):
         super(FirestoreDriver, self).__init__(client)
 
     def add(self, data):
+        found_item = None
+        try:
+            found_item = self._find({'email': data['email']})
+        except StopIteration:
+            pass
+
+        if found_item is not None:
+            return None
+
         _, doc_ref = self.database_client.add(data)
         self.metadata.update({
             'total_documents': firestore.Increment(1)
@@ -45,6 +54,9 @@ class FirestoreDriver(DatabaseDriver):
 
     def set_verified(self, id_str):
         document = self.database_client.document(id_str)
+
+        if document.get().to_dict()['verified'] is True:
+            return False
 
         document.update({'verified': True})
         self.metadata.update({

@@ -70,6 +70,13 @@ def add_student():
 
     _id = db.add(student_data)
 
+    if _id is None:
+        error = jsonify({
+            'error': 'This email has already been used to sign the petition',
+            'created': False
+        })
+        return make_response(error, 400)
+
     logger.debug(
         'Added student to petition. data=%s',
         student_data

@@ -12,7 +12,7 @@ import os
 
 logging.basicConfig(
     format=f"[%(asctime)s] [{os.getpid()}] [%(levelname)s] - %(name)s - %(message)s",
-    level=logging.DEBUG,
+    level=logging.INFO,
     datefmt='%Y/%m/%d %H:%M:%S %z')
 
 logger = logging.getLogger(__file__)

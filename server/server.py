@@ -85,7 +85,7 @@ def add_student():
     result = mail.send_validation_mail(student_name, student_email, str(_id))
     logger.debug(result)
 
-    return jsonify({'added_id': str(_id), 'created': True})
+    return jsonify({'created': True})
 
 
 @app.route('/verify/<string:_id>', methods=['POST'])

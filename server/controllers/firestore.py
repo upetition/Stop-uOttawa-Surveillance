@@ -18,6 +18,7 @@ class FirestoreDriver(DatabaseDriver):
         found_item = None
         try:
             found_item = self._find({'email': data['email']})
+            found_item = self._find({'student_number': data['student_number']})
         except StopIteration:
             pass
 

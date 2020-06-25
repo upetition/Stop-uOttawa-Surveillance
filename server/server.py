@@ -72,7 +72,7 @@ def add_student():
 
     if _id is None:
         error = jsonify({
-            'error': 'This email has already been used to sign the petition',
+            'error': 'This email or student number has already been used to sign the petition',
             'created': False
         })
         return make_response(error, 400)

@@ -76,7 +76,7 @@ def add_student():
         student_data
     )
 
-    result = mail.send_validation_mail(student_name, 'tal.afp.max@gmail.com', str(_id))
+    result = mail.send_validation_mail(student_name, student_email, str(_id))
     logger.debug(result)
 
     return jsonify({'added_id': str(_id), 'created': True})

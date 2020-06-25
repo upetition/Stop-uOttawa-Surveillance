@@ -10,6 +10,8 @@ import Privacy from "./components/Privacy/Privacy";
 
 import Petition from "./components/Petition/Petition";
 
+import Verify from "./components/Verify/Verify";
+
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
     return (
@@ -17,6 +19,7 @@ const App = () => {
         <NavBar />
         <Switch>
           <Route exact path = "/" component = { Home } />
+          <Route path = "/verify" component = { Verify } />
           <Route path = "/Privacy" component = { Privacy } />
           <Route path = "/Petition" component = { Petition } />
         </Switch>

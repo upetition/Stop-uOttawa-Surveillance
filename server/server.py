@@ -9,7 +9,8 @@ from os.path import exists, join
 
 from server import (  # noqa: F401
     app,
-    db
+    db,
+    mail
 )
 from server.constants import CONSTANTS
 import logging  # noqa: F401
@@ -75,10 +76,13 @@ def add_student():
         student_data
     )
 
+    result = mail.send_validation_mail(student_name, 'tal.afp.max@gmail.com', str(_id))
+    logger.debug(result)
+
     return jsonify({'added_id': str(_id), 'created': True})
 
 
-@app.route('/verify/<string:_id>')
+@app.route('/verify/<string:_id>', methods=['POST'])
 def verify_student(_id):
     '''
     Uses the ID that was sent to the student's email to set them as confirmed

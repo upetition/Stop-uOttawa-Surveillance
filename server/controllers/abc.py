@@ -19,3 +19,11 @@ class DatabaseDriver:
 
     def count_records(self, identifier):
         raise NotImplementedError()
+
+
+class EmailDriver:
+    def __init__(self, api_key, mail_domain):
+        raise NotImplementedError()
+
+    def send_validation_mail(self, target_name, target_email, link_id):
+        raise NotImplementedError()

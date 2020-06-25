@@ -10,5 +10,8 @@ CONSTANTS = {
     'DB_USERNAME': os.environ.get('DB_USERNAME'),
     'DB_PASSWORD': os.environ.get('DB_PASSWORD'),
     'ENV': os.environ.get('FLASK_ENV'),
-    'DB_TYPE': os.environ.get('DB_TYPE')
+    'DB_TYPE': os.environ.get('DB_TYPE', ''),
+    'MAIL_PROVIDER': os.environ.get('MAIL_PROVIDER', ''),
+    'MAIL_API_KEY': os.environ.get('MAIL_API_KEY', ''),
+    'DOMAIN': os.environ.get('DOMAIN'),
 }

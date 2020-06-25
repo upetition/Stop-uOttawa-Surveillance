@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     TextField,
     Checkbox,
@@ -25,6 +25,17 @@ const PetitionForm = () => {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failText, setFailText] = useState("Something went wrong...");
+  const [numSigners, setNumSigners] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/count/verified')
+    .then(data => {return data.json() })
+    .then(res => {
+      if (res.verified_count !== undefined) {
+        setNumSigners(res.verified_count)
+      }
+    })
+  }, [])
 
   const enableSubmit = (
     studentNumber !== "" &&
@@ -177,7 +188,12 @@ const PetitionForm = () => {
                  {failText}
             </Alert>
         </Snackbar>
-
+        {
+          (numSigners > 0) &&
+          <div className="row justify-content-left pb-2">
+            Signed by {numSigners} verified students
+          </div>
+        }
       </div>
       </main>
       </Card>

@@ -5,7 +5,7 @@ from server.controllers.abc import DatabaseDriver
 class FirestoreDriver(DatabaseDriver):
     valid_counts = {'verified', 'total'},
 
-    def __init__(self, project_id, oauth2_credentials):
+    def __init__(self, project_id=None, oauth2_credentials=None):
         db = firestore.Client(
             project=project_id,
             credentials=oauth2_credentials

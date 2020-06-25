@@ -15,7 +15,7 @@ class FirestoreDriver(DatabaseDriver):
         super(FirestoreDriver, self).__init__(client)
 
     def add(self, data):
-        doc_ref = self.database_client.add(data)
+        _, doc_ref = self.database_client.add(data)
         self.metadata.update({
             'total_documents': firestore.Increment(1)
         })

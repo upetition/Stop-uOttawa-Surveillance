@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      dockerfile: docker/frontend.prod.dockerfile

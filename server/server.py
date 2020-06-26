@@ -61,6 +61,10 @@ def add_student():
         error = jsonify({'error': 'Student number must be a number', 'created': False})
         return make_response(error, 400)
 
+    if not (1_000_000 <= student_number <= 9_999_999_999):
+        error = jsonify({'error': 'Student number is not valid', 'created': False})
+        return make_response(error, 400)
+
     student_data = {
         'name': student_name,
         'student_number': student_number,

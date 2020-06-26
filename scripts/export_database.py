@@ -10,7 +10,7 @@ def main():
     for snapshot in documents:
         result[snapshot.id] = snapshot.to_dict()
 
-    with open('db_backup.json', 'r') as f:
+    with open('db_backup.json', 'w') as f:
         json.dump(result, f)
 
 

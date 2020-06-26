@@ -26,3 +26,15 @@ button:active {
   outline: none !important;
   box-shadow: none !important;
 }
+
+@media only screen and (max-width: 575px) {
+  #mainContent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  h3 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+  }
+}

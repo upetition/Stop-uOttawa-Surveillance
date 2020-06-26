@@ -25,7 +25,7 @@ def main():
             data['name'] = crypto.encrypt(bname)
             data['student_number'] = crypto.encrypt(bstudent_number)
             data['email'] = crypto.encrypt(bemail)
-            snapshot.set(data)
+            snapshot.reference.set(data)
 
 
 if __name__ == "__main__":

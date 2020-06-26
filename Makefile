@@ -15,6 +15,12 @@ build: ## Build the docker containers
 		-f docker/docker-compose.yml \
 		build
 
+.PHONY: run
+run: ## Run the docker containers detached
+	docker-compose \
+		-f docker/docker-compose.yml -f docker/db.yml \
+		up
+
 .PHONY: run-detach
 run-detach: ## Run the docker containers detached
 	docker-compose \

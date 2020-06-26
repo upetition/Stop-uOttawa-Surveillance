@@ -8,10 +8,14 @@ from os.path import exists, join
 
 from server import (  # noqa: F401
     app,
+    crypto,
     db,
     mail
 )
 from server.constants import CONSTANTS
+from server.utils import (
+    int_to_bytes,
+)
 import logging  # noqa: F401
 import re
 
@@ -65,10 +69,14 @@ def add_student():
         error = jsonify({'error': 'Student number is not valid', 'created': False})
         return make_response(error, 400)
 
+    bytes_student_name = student_name.encode('utf-8')
+    bytes_student_email = student_email.encode('utf-8')
+    bytes_student_number = int_to_bytes(student_number)
+
     student_data = {
-        'name': student_name,
-        'student_number': student_number,
-        'email': student_email,
+        'name': crypto.encrypt(bytes_student_name),
+        'student_number': crypto.encrypt(bytes_student_number),
+        'email': crypto.encrypt(bytes_student_email),
         'verified': False
     }
 

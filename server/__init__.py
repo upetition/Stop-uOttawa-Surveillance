@@ -7,6 +7,7 @@ from server.controllers.abc import (
 from server.controllers.mongo import MongoDriver
 from server.controllers.firestore import FirestoreDriver
 from server.controllers.mailgun import MailgunDriver
+from cryptography.fernet import Fernet
 import logging
 import os
 
@@ -17,6 +18,8 @@ logging.basicConfig(
 
 logger = logging.getLogger(__file__)
 app = Flask(__name__, static_folder='build')
+
+crypto = Fernet(CONSTANTS['KEY'].encode('utf-8'))
 
 db: DatabaseDriver = None
 mail: EmailDriver = None

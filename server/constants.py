@@ -14,4 +14,5 @@ CONSTANTS = {
     'MAIL_PROVIDER': os.environ.get('MAIL_PROVIDER', ''),
     'MAIL_API_KEY': os.environ.get('MAIL_API_KEY', ''),
     'DOMAIN': os.environ.get('DOMAIN'),
+    'KEY': os.environ.get('SECRET_KEY')
 }

@@ -7,8 +7,7 @@ const Petition = () => {
     <div className={`container ${styles.contentSize}`}>
       <div className="row justify-content-center pb-5">
         <h2>Petition</h2>
-        <p>We as students of the University of Ottawa hereby issue a formal request that the &quot;Respondus Lockdown Browser&quot;,
-        and any similar application, be completely banned throughout the institution.</p>
+        <p>We as students of the University of Ottawa hereby issue a formal request that the &quot;Respondus Lockdown Browser&quot;, &quot;Respondus Monitor&quot;, and any software that must be installed on a user&#39;s computer for the explicit purpose of monitoring a student, gathering data about a student, or restricting the capabilities of the student&#39;s computer; or utilizes any form of recorded video and/or audio feed for the purpose of monitoring a student; or utilizes any form of live video and/or audio feed for the purpose of monitoring a student that shall be viewed or monitored by a proctor who is not an employee or faculty member of the University of Ottawa, be completely banned throughout the institution</p>
 
         <p>Programs like the aforementioned browser have fundamental flaws that are directly linked to their very method of operation,
         and therefore the problem cannot simply be resolved by using a different software.</p>

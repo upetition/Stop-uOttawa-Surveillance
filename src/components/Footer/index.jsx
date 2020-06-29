@@ -28,6 +28,11 @@ const Footer = () => {
                   Privacy
                 </a>
               </li>
+              <li>
+                <a className={styles.footerlink} href="/letter">
+                  Open Letter
+                </a>
+              </li>
             </ul>
           </div>
         </div>

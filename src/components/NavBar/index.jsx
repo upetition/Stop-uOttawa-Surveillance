@@ -24,6 +24,9 @@ const NavBar = () => {
           <Link className="nav-item nav-link active" to="Privacy">
             Privacy
           </Link>
+          <Link className="nav-item nav-link active" to="Letter">
+            Open Letter
+          </Link>
         </div>
       </nav>
     </React.Fragment>

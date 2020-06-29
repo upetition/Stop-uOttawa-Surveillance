@@ -9,5 +9,6 @@ setup(
         'python-dotenv',
         'gunicorn',
         'flask-pymongo',
-        'google-cloud-firestore'],
+        'google-cloud-firestore',
+        'cryptography'],
 )

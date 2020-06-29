@@ -12,6 +12,8 @@ import Petition from "./components/Petition/Petition";
 
 import Verify from "./components/Verify/Verify";
 
+import OpenLetter from "./components/OpenLetter/OpenLetter";
+
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
     return (
@@ -22,6 +24,7 @@ const App = () => {
           <Route path = "/verify" component = { Verify } />
           <Route path = "/Privacy" component = { Privacy } />
           <Route path = "/Petition" component = { Petition } />
+          <Route path = "/Letter" component = { OpenLetter } />
         </Switch>
         <Footer />
       </React.Fragment>

@@ -4,7 +4,6 @@ from flask import (
     request,
     send_from_directory
 )
-from flask_json_schema import JsonValidationError
 from os.path import exists, join
 
 from server import (  # noqa: F401
@@ -188,11 +187,6 @@ def page_not_found(error):
     logger.warning('Route does not exist')
     json_response = jsonify({'error': 'Page not found'})
     return make_response(json_response, CONSTANTS['HTTP_STATUS']['404_NOT_FOUND'])
-
-
-@app.errorhandler(JsonValidationError)
-def validation_error(e):
-    breakpoint()
 
 
 if __name__ == '__main__':

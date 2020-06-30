@@ -1,12 +1,15 @@
 from flask import Flask
+from flask_json_schema import JsonSchema
 from server.constants import CONSTANTS
 from server.controllers.abc import (
     DatabaseDriver,
-    EmailDriver
+    EmailDriver,
+    SocialDriver
 )
 from server.controllers.mongo import MongoDriver
 from server.controllers.firestore import FirestoreDriver
 from server.controllers.mailgun import MailgunDriver
+from server.controllers.discord import DiscordDriver
 from cryptography.fernet import Fernet
 import logging
 import os
@@ -23,6 +26,9 @@ crypto = Fernet(CONSTANTS['KEY'].encode('utf-8'))
 
 db: DatabaseDriver = None
 mail: EmailDriver = None
+
+schema = JsonSchema(app)
+social: SocialDriver = None
 
 if CONSTANTS['DB_TYPE'] == 'mongo':
     logger.warning('DB type is local, using Mongo driver.')
@@ -45,5 +51,12 @@ if CONSTANTS['DB_TYPE'] == 'firestore':
 if CONSTANTS['MAIL_PROVIDER'] == 'mailgun':
     mail = MailgunDriver(
         CONSTANTS['MAIL_API_KEY'],
-        CONSTANTS['DOMAIN']
+        CONSTANTS['DOMAIN'],
+        CONSTANTS['MAINTAINER_EMAIL']
+    )
+
+
+if CONSTANTS['SOCIAL_PLATFORM'] == 'discord':
+    social = DiscordDriver(
+        CONSTANTS['SOCIAL_API_URL']
     )

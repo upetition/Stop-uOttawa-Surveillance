@@ -4,13 +4,16 @@ from flask import (
     request,
     send_from_directory
 )
+from flask_json_schema import JsonValidationError
 from os.path import exists, join
 
 from server import (  # noqa: F401
     app,
     crypto,
     db,
-    mail
+    mail,
+    schema,
+    social
 )
 from server.constants import CONSTANTS
 from server.utils import (
@@ -127,6 +130,45 @@ def delete_student(student_number):
     db.delete({'student_number': student_number})
 
 
+@app.route('/contact', methods=["POST"])
+@schema.validate({
+    'properties': {
+        'name': {
+            'type': 'string'
+        },
+        'email': {
+            'type': 'string',
+            'format': 'email'
+        },
+        'comment': {
+            'type': 'string',
+            'maxLength': 1000
+        }
+    },
+    'required': ['name', 'email', 'comment']
+})
+def contact_us():
+    '''
+    Grabs the name & email & comment from the request body and sends it
+    to the maintainer email. If successfully sent, it then posts a well-structured
+    message to the discord channel with the webhook (if configured).
+    '''
+    logger.info('Hit route %s', request.path)
+    data = request.get_json()
+    name = data['name']
+    email = data['email']
+    comment = data['comment']
+    response = mail.send_contact_mail(name, email, comment)
+
+    status_ok = 200 <= response.status_code < 300
+    if status_ok and social:
+        social.post_comment(comment, name=name, email=email)
+
+    logger.debug('Email post status %s', status_ok)
+
+    return jsonify({'success': status_ok})
+
+
 @app.route('/count/verified')
 def count_verified():
     '''
@@ -146,6 +188,11 @@ def page_not_found(error):
     logger.warning('Route does not exist')
     json_response = jsonify({'error': 'Page not found'})
     return make_response(json_response, CONSTANTS['HTTP_STATUS']['404_NOT_FOUND'])
+
+
+@app.errorhandler(JsonValidationError)
+def validation_error(e):
+    breakpoint()
 
 
 if __name__ == '__main__':

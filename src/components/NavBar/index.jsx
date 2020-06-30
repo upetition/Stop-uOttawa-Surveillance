@@ -15,9 +15,6 @@ const NavBar = () => {
           Stop uOttawa surveillance
         </Link>
         <div className="navbar-nav">
-          <Link className="nav-item nav-link active" to="/">
-            Home
-          </Link>
           <Link className="nav-item nav-link active" to="Petition">
             Petition
           </Link>
@@ -26,6 +23,9 @@ const NavBar = () => {
           </Link>
           <Link className="nav-item nav-link active" to="Letter">
             Open Letter
+          </Link>
+          <Link className="nav-item nav-link active" to="Contact">
+            Contact
           </Link>
         </div>
       </nav>

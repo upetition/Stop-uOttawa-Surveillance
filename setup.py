@@ -10,5 +10,7 @@ setup(
         'gunicorn',
         'flask-pymongo',
         'google-cloud-firestore',
-        'cryptography'],
+        'cryptography',
+        'flask-json-schema',
+        'beautifulsoup4'],
 )

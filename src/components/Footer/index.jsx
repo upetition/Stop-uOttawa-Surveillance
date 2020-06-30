@@ -14,11 +14,6 @@ const Footer = () => {
           <div className="col-2">
             <ul className="list-unstyled">
               <li>
-                <a className={styles.footerlink} href="/">
-                  Home
-                </a>
-              </li>
-              <li>
                 <a className={styles.footerlink} href="/petition">
                   Petition
                 </a>
@@ -31,6 +26,11 @@ const Footer = () => {
               <li>
                 <a className={styles.footerlink} href="/letter">
                   Open Letter
+                </a>
+              </li>
+              <li>
+                <a className={styles.footerlink} href="/contact">
+                  Contact
                 </a>
               </li>
             </ul>

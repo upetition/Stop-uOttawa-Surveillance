@@ -27,3 +27,14 @@ class EmailDriver:
 
     def send_validation_mail(self, target_name, target_email, link_id):
         raise NotImplementedError()
+
+    def send_contact_mail(self, sender_name, sender_email, sender_comment):
+        raise NotImplementedError()
+
+
+class SocialDriver:
+    def __init__(self, api_url):
+        raise NotImplementedError()
+
+    def post_comment(self, comment, **metadata):
+        raise NotImplementedError()

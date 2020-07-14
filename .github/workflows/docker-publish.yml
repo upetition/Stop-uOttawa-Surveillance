@@ -31,7 +31,7 @@ jobs:
       - name: Build frontend image
         run: docker build . --file docker/frontend.prod.dockerfile --tag $IMAGE_NAME_FRONTEND
 
-      - name: Build frontend image
+      - name: Build backend image
         run: docker build . --file docker/backend.dockerfile --tag $IMAGE_NAME_BACKEND
 
       - name: Push frontend image

@@ -4,9 +4,11 @@ RUN npm install -g serve
 
 WORKDIR /temp
 
-COPY package*.json /temp/
+COPY package*.json ./
 
 RUN npm install
+
+COPY . ./
 
 RUN npm run build
 

@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY ./server /app/server
 
-COPY .flaskenv /app
-
 COPY setup.cfg /app
 
 COPY setup.py /app

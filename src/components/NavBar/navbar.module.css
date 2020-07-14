@@ -13,3 +13,17 @@
   color: #ffffff;
   background: #000000;
 }
+
+.darkItem {
+  color: #000000;
+}
+
+.darkItem a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.darkItem a:hover {
+  color: #000000;
+  text-decoration: none;
+}

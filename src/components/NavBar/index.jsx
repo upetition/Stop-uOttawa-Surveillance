@@ -1,33 +1,71 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
+import { Button, Menu, MenuItem } from "@material-ui/core";
 
 //TODO Web Template Studio: Add a new link in the NavBar for your page here.
 // A skip link is included as an accessibility best practice. For more information visit https://www.w3.org/WAI/WCAG21/Techniques/general/G1.
+const ButtonLink = ({ to, className, children }) => {
+  return (
+  <Button
+    size="large"
+    to={to}
+    className={`text-capitalize font-weight-normal nav-item nav-link active${className}`}
+    component={Link}
+  >
+    {children}
+  </Button>
+  );
+}
+
 const NavBar = () => {
+  const [anchorResource, setAnchorResource] = useState(null);
+
+  const handleResourceClose = () => setAnchorResource(null);
+  const handleResourceClick = (event) => setAnchorResource(event.currentTarget);
+
   return (
     <React.Fragment>
       <div className={styles.skipLink}>
         <a href="#mainContent">Skip to Main Content</a>
       </div>
       <nav className="navbar navbar-expand-sm navbar-light border-bottom justify-content-between">
-        <Link className="navbar-brand" to="/">
+        <ButtonLink className="navbar-brand" to="/">
           Stop uOttawa surveillance
-        </Link>
+        </ButtonLink>
         <div className="navbar-nav">
-          <Link className="nav-item nav-link active" to="Petition">
+          <ButtonLink to="Petition">
             Petition
-          </Link>
-          <Link className="nav-item nav-link active" to="Privacy">
+          </ButtonLink>
+          <ButtonLink to="Privacy">
             Privacy
-          </Link>
-          <Link className="nav-item nav-link active" to="Letter">
-            Open Letter
-          </Link>
-          <Link className="nav-item nav-link active" to="Contact">
+          </ButtonLink>
+          <Button
+            className="text-capitalize font-weight-normal navbar-light nav-item nav-link active"
+            onClick={handleResourceClick}
+          >
+            Resources
+          </Button>
+          <ButtonLink to="Contact">
             Contact
-          </Link>
+          </ButtonLink>
         </div>
+        <Menu
+          id="resource-menu"
+          anchorEl={anchorResource}
+          onClose={handleResourceClose}
+          open={Boolean(anchorResource)}
+          keepMounted
+          className="navbar navbar-expand-sm navbar-light"
+        >
+          <MenuItem component={Link} to="/letter" onClick={handleResourceClose}>
+            Open Letter
+          </MenuItem>
+          <MenuItem component={Link} to="/analysis" onClick={handleResourceClose}>
+            Policy Analysis
+          </MenuItem>
+
+        </Menu>
       </nav>
     </React.Fragment>
   );

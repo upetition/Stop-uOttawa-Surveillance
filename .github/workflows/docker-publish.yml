@@ -10,8 +10,6 @@ on:
     tags:
       - v*
 
-  pull_request:
-
 env:
   IMAGE_NAME_BACKEND: upetition-backend
   IMAGE_NAME_FRONTEND: upetition-frontend 

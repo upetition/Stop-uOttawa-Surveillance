@@ -16,6 +16,7 @@ env:
 
 jobs:
   build_and_push_frontend:
+    name: "Build and push frontend Docker container"
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push'
@@ -52,6 +53,7 @@ jobs:
           docker push $IMAGE_ID:$VERSION
 
   build_and_push_backend:
+    name: "Build and push backend Docker container"
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push'

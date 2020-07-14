@@ -15,7 +15,7 @@ env:
   IMAGE_NAME_FRONTEND: upetition-frontend 
 
 jobs:
-  push:
+  Build and push frontend:
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push'
@@ -28,10 +28,7 @@ jobs:
 
       - name: Build frontend image
         run: docker build . --file docker/frontend.prod.dockerfile --tag $IMAGE_NAME_FRONTEND
-
-      - name: Build backend image
-        run: docker build . --file docker/backend.dockerfile --tag $IMAGE_NAME_BACKEND
-
+      
       - name: Push frontend image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME_FRONTEND
@@ -53,6 +50,20 @@ jobs:
 
           docker tag $IMAGE_NAME_FRONTEND $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+
+  Build and push backend:
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      - name: Build backend image
+        run: docker build . --file docker/backend.dockerfile --tag $IMAGE_NAME_BACKEND
 
       - name: Push backend image
         run: |

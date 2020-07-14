@@ -15,7 +15,7 @@ env:
   IMAGE_NAME_FRONTEND: upetition-frontend 
 
 jobs:
-  Build and push frontend:
+  build_and_push_frontend:
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push'
@@ -51,7 +51,7 @@ jobs:
           docker tag $IMAGE_NAME_FRONTEND $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
-  Build and push backend:
+  build_and_push_backend:
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push'

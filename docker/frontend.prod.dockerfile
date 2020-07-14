@@ -14,7 +14,7 @@ RUN npm run build
 
 WORKDIR /app
 
-RUN cp /temp/build . \
+RUN cp -r /temp/build . \
 && rm -rf /temp
 
 CMD ["serve",  "-s",  "build", "-p", "80"]

@@ -1,5 +1,5 @@
 ﻿## Status
-[![python](https://github.com/DudeRandom21/Stop-uOttawa-Surveillance/workflows/python/badge.svg)](https://github.com/DudeRandom21/Stop-uOttawa-Surveillance/actions?query=workflow%3Apython)
+[![python](https://github.com/upetition/Stop-uOttawa-Surveillance/workflows/python/badge.svg)](https://github.com/upetition/Stop-uOttawa-Surveillance/actions?query=workflow%3Apython)
 
 ## Getting Started
 

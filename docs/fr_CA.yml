@@ -1,13 +1,13 @@
-navbar: 
+navbar:
   - Arrêtez la surveillance à uOttawa
   - Accueil
   - Pétition
   - Confidentialité
-landing_page: 
+landing_page:
   - Arrêtez les plans de surveillance de l'Université d'Ottawa
   - L'Université d'Ottawa prévoit d'obliger les étudiants à utiliser le navigateur web et la surveillance de Respondus Lockdown. Il s'agit d'une violation flagrante de la vie privée des étudiants et s'attaque à l'intégrité de chaque étudiant.
   - Aidez-nous à mettre un terme à ces plans. Signez la pétition maintenant!
-form: 
+form:
   - Nom
   - Courriel
   - Numéro étudiant
@@ -15,7 +15,7 @@ form:
   - Je reconnais que je consens à ajouter mon nom à la pétition
   - Soumettre
   - Signé par {{ number }} étudiants vérifiés
-footer: 
+footer:
   - Le code de ce site Web est disponible sur GitHub
 privacy:
   - uPetition ne partagera pas les informations fournies par les étudiants (nom, courriel, numéro d'étudiant) avec des tiers autres que l'Université d'Ottawa (l'Université) et notre fournisseur de services Cloud. Les données entreposées dans la base de données uPetition sont exclusivement le nom, l'adresse courriel, le numéro d'étudiant et l'état de vérification (que l'étudiant ait cliqué ou non sur le lien de vérification envoyé à leur courriel) des étudiants qui ont choisi de divulguer ces informations à l'équipe uPetition sous forme de formulaire sur le site uPetition.
@@ -23,8 +23,8 @@ privacy:
   - uPetition conservera ces données pendant au plus une année civile, ou jusqu'à ce que l'Université ait accepté de cesser toute utilisation du logiciel de surveillance pour les évaluations sur les appareils personnels des étudiants, la période la plus courte étant retenue. Après cette période, la pétition complète sera exportée dans un format texte pour l'archivage et toutes les données numériques seront supprimées dans toute la mesure du possible en vertu du contrat avec le fournisseur de services Cloud. Bien que l'équipe uPetition ne puisse garantir que les données seront complètement effacées des services du fournisseur Cloud (car l'équipe uPetition n'a pas d'accès physique aux serveurs du fournisseur Cloud), l'équipe uPetition s'assurera que tout accès à ces informations sera limité au meilleur de nos capacités et sera inaccessible à l'équipe uPetition via le portail du fournisseur Cloud.
   - Une fois les informations exportées en format papier pour l'archivage, les documents d'archives seront scellés et ouverts uniquement sur demande de l'Université, soit par l'intermédiaire d'un représentant de l'administration, soit par décision de justice.
   - L'équipe uPetition se réserve le droit de collecter des métadonnées anonymisées liées à la pétition telles que, mais sans s'y limiter, le nombre total de personnes qui ont soumis le formulaire sur le site Web uPetition, le nombre total de personnes vérifiées et les heures auxquelles la pétition des signatures ont eu lieu. Ces données seront principalement entreposées dans des registres et utilisées pour améliorer les services que l'équipe uPetition fournira aux étudiants, par exemple en fournissant un compteur de signatures vérifiées sur le site Web uPetition et pour déterminer quand l'équipe uPetition doit augmenter les ressources d'hébergement du site, ainsi que pour la correction de bogues. Ces données peuvent être entreposées pour une durée indéterminée et utilisées ou affichées à des fins promotionnelles à la discrétion des membres de l'équipe uPetition, y compris pour une utilisation non affiliée à uPetition, comme pour l'utilisation de portfolio.
-  - Le code source complet du site Web uPetition est disponible sur GitHub à https://github.com/DudeRandom21/Stop-uOttawa-Surveillance et peut être consulté à tout moment.
-petition: 
+  - Le code source complet du site Web uPetition est disponible sur GitHub à https://github.com/upetition/Stop-uOttawa-Surveillance et peut être consulté à tout moment.
+petition:
   - Pétition
   - En tant qu'étudiants de l'Université d'Ottawa, nous émettons par cette pétition une demande officielle d'interdiction totale du «Respondus Lockdown Browser» et de toute application similaire dans tout l'établissement.
   - Des programmes comme le navigateur web susmentionné ont des défauts fondamentaux qui sont directement liés à leur mode de fonctionnement, donc le problème ne peut pas être simplement résolu en utilisant un logiciel différent.

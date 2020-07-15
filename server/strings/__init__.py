@@ -15,7 +15,7 @@ strings = {
         },
         'github_link': {
             'en': 'See the code for this website on '
-            '<a href="https://github.com/DudeRandom21/Stop-uOttawa-Surveillance">GitHub</a>',
+            '<a href="https://github.com/upetition/Stop-uOttawa-Surveillance">GitHub</a>',
             'fr': ''
         }
     },

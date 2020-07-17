@@ -16,6 +16,8 @@ import OpenLetter from "./components/OpenLetter/OpenLetter";
 
 import ContactUs from "./components/ContactUs";
 
+import Testimonial from "./components/Testimonial";
+
 import Analysis from "./components/Analysis";
 
 //TODO Web Template Studio: Add routes for your new pages here.
@@ -31,6 +33,7 @@ const App = () => {
           <Route path = "/Letter" component = { OpenLetter } />
           <Route path = "/Contact" component = { ContactUs } />
           <Route path = "/Analysis" component = { Analysis } />
+          <Route path = "/Testimonial" component = { Testimonial } />
         </Switch>
         <Footer />
       </React.Fragment>

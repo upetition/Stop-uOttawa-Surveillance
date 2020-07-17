@@ -4,9 +4,7 @@ import {
     Checkbox,
     FormGroup,
     FormControlLabel,
-    FormControl,
-    InputLabel,
-    NativeSelect,
+    MenuItem,
     Button,
     CircularProgress,
     Snackbar,
@@ -55,6 +53,37 @@ const Testimonial = () => {
   const handleYearChange = (event) => {
     setYear(event.target.value);
   };
+
+  const years = [
+    {
+      value: '1',
+      label: 'First',
+    },
+    {
+      value: '2',
+      label: 'Second',
+    },
+    {
+      value: '3',
+      label: 'Third',
+    },
+    {
+      value: '4',
+      label: 'Fourth',
+    },
+    {
+        value: '5',
+        label: 'Fith+',
+    },
+    {
+        value: 'msc',
+        label: 'Masters',
+    },
+    {
+        value: 'phd',
+        label: 'Ph.D.',
+    }
+  ];
 
   const handleClick = () => {
       setSending(true);
@@ -117,7 +146,7 @@ const Testimonial = () => {
                             Description here
                         </p>
                     </div>
-                    <div className="row justify-content-center p-0 pb-4">
+                    <div className="row justify-content-center p-0 pb-3">
                     <div className="col-sm-12 col-md-6">
                         <TextField
                         required
@@ -137,6 +166,8 @@ const Testimonial = () => {
                         onChange={(e) => setStudentNumber(e.target.value)}
                         />
                     </div>
+                    </div>
+                    <div className="row justify-content-center p-0 pb-4">
                     <div className="col-sm-12 col-md-6">
                         <TextField
                         required
@@ -146,23 +177,21 @@ const Testimonial = () => {
                         onChange={(e) => setProgram(e.target.value)}
                         />
                     </div>
-                    <div className="col-sm-4 col-md-6">
-                        <FormControl class="form-inline">
-                            <InputLabel>Year</InputLabel>
-                            <NativeSelect
-                            required
+                    <div className="col-sm-12 col-md-6">
+                        <TextField
+                            id="year-select"
+                            select
+                            label="Year"
                             value={year}
                             fullWidth
                             onChange={handleYearChange}
                             >
-                            <option aria-label="" value="" />
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>3</option>
-                            <option value={5}>5+</option>
-                            </NativeSelect>
-                        </FormControl>
+                            {years.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </div>
                     </div>
                     <div className="row justify-content-center">

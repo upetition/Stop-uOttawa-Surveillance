@@ -64,6 +64,9 @@ const NavBar = () => {
           <MenuItem component={Link} to="/analysis" onClick={handleResourceClose}>
             Policy Analysis
           </MenuItem>
+          <MenuItem component={Link} to="/testimonial" onClick={handleResourceClose}>
+            Submit Testimonial
+          </MenuItem>
 
         </Menu>
       </nav>

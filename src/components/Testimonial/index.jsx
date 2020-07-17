@@ -73,7 +73,7 @@ const Testimonial = () => {
     },
     {
         value: '5',
-        label: 'Fith+',
+        label: 'Fifth+',
     },
     {
         value: 'msc',

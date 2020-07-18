@@ -5,7 +5,10 @@ class DatabaseDriver:
     def __init__(self, database_client=None):
         self.database_client = database_client
 
-    def add(self, data):
+    def add_student(self, data):
+        raise NotImplementedError()
+
+    def add_testimonial(self, data):
         raise NotImplementedError()
 
     def delete(self, data):
@@ -14,7 +17,10 @@ class DatabaseDriver:
     def update(self, identifier, update):
         raise NotImplementedError()
 
-    def set_verified(self, id_str):
+    def set_student_verified(self, id_str):
+        raise NotImplementedError()
+
+    def set_testimonial_verified(self, id_str):
         raise NotImplementedError()
 
     def count_records(self, identifier):

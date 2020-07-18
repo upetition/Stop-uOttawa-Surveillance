@@ -29,10 +29,7 @@ class FirestoreDriver(DatabaseDriver):
     ):
         found_item = None
         for field in validation_fields:
-            try:
-                found_item = self._find({field, data[field]}, validation_client)
-            except StopIteration:
-                pass
+            found_item = self._find({field, data[field]}, validation_client)
 
             if check_unique and found_item is not None:
                 return None
@@ -53,7 +50,12 @@ class FirestoreDriver(DatabaseDriver):
         search_fields = identifier.keys()
         for field in search_fields:
             query = query.where(field, '==', identifier[field])
-        document = next(query.stream())
+        document = None
+        try:
+            document = next(query.stream())
+        except StopIteration:
+            document = None
+
         return document
 
     def _verify(self, id_str, *, client, metadata):

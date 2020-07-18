@@ -20,9 +20,10 @@ const ButtonLink = ({ to, className, children }) => {
 
 const NavBar = () => {
   const [anchorResource, setAnchorResource] = useState(null);
+  const [anchorContact, setAnchorContact] = useState(null);
 
-  const handleResourceClose = () => setAnchorResource(null);
-  const handleResourceClick = (event) => setAnchorResource(event.currentTarget);
+  const handleMenuClose = (setter) => () => setter(null);
+  const handleMenuClick = (setter) => (event) => setter(event.currentTarget);
 
   return (
     <React.Fragment>
@@ -42,32 +43,46 @@ const NavBar = () => {
           </ButtonLink>
           <Button
             className="text-capitalize font-weight-normal navbar-light nav-item nav-link active"
-            onClick={handleResourceClick}
+            onClick={handleMenuClick(setAnchorResource)}
           >
             Resources
           </Button>
-          <ButtonLink to="Contact">
+          <Button
+            className="text-capitalize font-weight-normal navbar-light nav-item nav-link active"
+            onClick={handleMenuClick(setAnchorContact)}
+          >
             Contact
-          </ButtonLink>
+          </Button>
         </div>
         <Menu
           id="resource-menu"
           anchorEl={anchorResource}
-          onClose={handleResourceClose}
+          onClose={handleMenuClose(setAnchorResource)}
           open={Boolean(anchorResource)}
           keepMounted
-          className="navbar navbar-expand-sm navbar-light"
+          className="navbar navbar-light navbar-expand-sm"
         >
-          <MenuItem component={Link} to="/letter" onClick={handleResourceClose}>
+          <MenuItem component={Link} onClose={handleMenuClose(setAnchorResource)} to="/letter">
             Open Letter
           </MenuItem>
-          <MenuItem component={Link} to="/analysis" onClick={handleResourceClose}>
+          <MenuItem component={Link} onClose={handleMenuClose(setAnchorResource)} to="/analysis">
             Policy Analysis
           </MenuItem>
-          <MenuItem component={Link} to="/testimonial" onClick={handleResourceClose}>
+        </Menu>
+        <Menu
+          id="contact-menu"
+          anchorEl={anchorContact}
+          onClose={handleMenuClose(setAnchorContact)}
+          open={Boolean(anchorContact)}
+          keepMounted
+          className="navbar navbar-light navbar-expand-sm"
+        >
+          <MenuItem component={Link} onClose={handleMenuClose(setAnchorContact)} to="/contact">
+            Contact Us
+          </MenuItem>
+          <MenuItem component={Link} onClose={handleMenuClose(setAnchorContact)} to="/submit_testimonial">
             Submit Testimonial
           </MenuItem>
-
         </Menu>
       </nav>
     </React.Fragment>

@@ -16,7 +16,7 @@ import OpenLetter from "./components/OpenLetter/OpenLetter";
 
 import ContactUs from "./components/ContactUs";
 
-import Testimonial from "./components/Testimonial";
+import TestimonialSubmit from "./components/TestimonialSubmit";
 
 import Analysis from "./components/Analysis";
 
@@ -33,7 +33,7 @@ const App = () => {
           <Route path = "/Letter" component = { OpenLetter } />
           <Route path = "/Contact" component = { ContactUs } />
           <Route path = "/Analysis" component = { Analysis } />
-          <Route path = "/Testimonial" component = { Testimonial } />
+          <Route path = "/Submit_Testimonial" component = { TestimonialSubmit } />
         </Switch>
         <Footer />
       </React.Fragment>

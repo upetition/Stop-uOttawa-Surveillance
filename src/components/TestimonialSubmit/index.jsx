@@ -11,13 +11,13 @@ import {
     Card
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-import styles from "./testimonial.module.css";
+import styles from "./testimonialsubmit.module.css";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 
-const Testimonial = () => {
+const TestimonialSubmit = () => {
   const [name, setName] = useState("");
   const [studentNumber, setStudentNumber] = useState("");
   const [program, setProgram] = useState("");
@@ -135,7 +135,7 @@ const Testimonial = () => {
         <div className={`container ${styles.contentSize} pb-5`}>
             <div className="row pt-5 pb-2">
                 <h1>
-                    Title here
+                    Submit a Testimonial
                 </h1>
             </div>
             <Card
@@ -144,7 +144,8 @@ const Testimonial = () => {
                 <div className="container m-0 p-2 pb-5">
                     <div className="row justify-content-left pb-3">
                         <p className={`${styles.caption}`}>
-                            Description here
+                            If you are a University of Ottawa student who has signed the petition, we would love to hear your thoughts! Comments submitted in this form will be subject to review by the uPetition team and, if they are accepted, will be displayed on our Testimonials page.<br /><br />
+                            Note: Our Testimonials page is currently under construction, but the team is collecting student thoughts while we build!
                         </p>
                     </div>
                     <div className="row justify-content-center p-0 pb-3">
@@ -265,4 +266,4 @@ const Testimonial = () => {
       </main>
   );
 }
-export default Testimonial;
+export default TestimonialSubmit;

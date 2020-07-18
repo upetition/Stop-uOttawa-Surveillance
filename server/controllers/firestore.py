@@ -12,32 +12,86 @@ class FirestoreDriver(DatabaseDriver):
         )
         client = db.collection('students')
         self.metadata = client.document('metadata')
+        self.testimonials = db.collection('testimonials')
+        self.testimonials_metadata = self.testimonials.document('metadata')
         super(FirestoreDriver, self).__init__(client)
 
-    def add(self, data):
+    def _add(
+        self,
+        data,
+        *,
+        validation_fields,
+        client,
+        metadata,
+        check_unique=False,
+        check_exists=False,
+        validation_client=None
+    ):
         found_item = None
-        try:
-            found_item = self._find({'email': data['email']})
-            found_item = self._find({'student_number': data['student_number']})
-        except StopIteration:
-            pass
+        for field in validation_fields:
+            try:
+                found_item = self._find({field, data[field]}, validation_client)
+            except StopIteration:
+                pass
 
-        if found_item is not None:
-            return None
+            if check_unique and found_item is not None:
+                return None
+            if check_exists and found_item is None:
+                return None
 
-        _, doc_ref = self.database_client.add(data)
-        self.metadata.update({
+        _, doc_ref = client.add(data)
+        metadata.update({
             'total_documents': firestore.Increment(1)
         })
+
         return doc_ref.id
 
-    def _find(self, identifier):
+    def _find(self, identifier, query=None):
+        if query is None:
+            query = self.database_client
+
         search_fields = identifier.keys()
-        query = self.database_client
         for field in search_fields:
             query = query.where(field, '==', identifier[field])
         document = next(query.stream())
         return document
+
+    def _verify(self, id_str, *, client, metadata):
+        document = client.document(id_str)
+
+        if document.get().to_dict()['verified'] is True:
+            return False
+
+        document.update({'verified': True})
+        metadata.update({
+            'total_verified': firestore.Increment(1)
+        })
+
+        return True
+
+    def _update(self, identifier, update, *, client):
+        document = self._find(identifier, client)
+        document.update(update)
+
+    def add_student(self, data):
+        return self._add(
+            data,
+            validation_fields=['email', 'student_number'],
+            client=self.database_client,
+            metadata=self.metadata,
+            check_unique=True,
+            validation_client=self.database_client
+        )
+
+    def add_testimonial(self, data):
+        return self._add(
+            data,
+            validation_fields=['name', 'student_number'],
+            client=self.testimonials,
+            metadata=self.testimonials_metadata,
+            check_exists=True,
+            validation_client=self.database_client
+        )
 
     def delete(self, identifier):
         document = self._find(identifier)
@@ -45,26 +99,23 @@ class FirestoreDriver(DatabaseDriver):
         if doc_data['verified']:
             self.metadata.update({
                 'total_verified': firestore.Increment(-1),
-                'total_ducments': firestore.Increment(-1)
+                'total_documents': firestore.Increment(-1)
             })
         document.delete()
 
-    def update(self, identifier, update):
-        document = self._find(identifier)
-        document.update(update)
+    def set_student_verified(self, id_str):
+        return self._verify(
+            id_str,
+            client=self.database_client,
+            metadata=self.metadata
+        )
 
-    def set_verified(self, id_str):
-        document = self.database_client.document(id_str)
-
-        if document.get().to_dict()['verified'] is True:
-            return False
-
-        document.update({'verified': True})
-        self.metadata.update({
-            'total_verified': firestore.Increment(1)
-        })
-
-        return True
+    def set_testimonial_verified(self, id_str):
+        return self._verify(
+            id_str,
+            client=self.testimonials,
+            metadata=self.testimonials_metadata
+        )
 
     def count_records(self, identifier):
         if 'total' in identifier:

@@ -5,35 +5,13 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className="container-fluid">
-        <div className="row justify-content-around">
+        <div className="row justify-content-around pb-3">
           <div className="col-8 col-md-5">
             <p className={styles.description}>
               View the code for this website on <a href="https://github.com/upetition/Stop-uOttawa-Surveillance">GitHub</a>
             </p>
           </div>
           <div className="col-2">
-            <ul className="list-unstyled">
-              <li>
-                <a className={styles.footerlink} href="/petition">
-                  Petition
-                </a>
-              </li>
-              <li>
-                <a className={styles.footerlink} href="/privacy">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a className={styles.footerlink} href="/letter">
-                  Open Letter
-                </a>
-              </li>
-              <li>
-                <a className={styles.footerlink} href="/contact">
-                  Contact
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

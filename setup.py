@@ -12,5 +12,6 @@ setup(
         'google-cloud-firestore',
         'cryptography',
         'flask-json-schema',
-        'beautifulsoup4'],
+        'beautifulsoup4',
+        'pydeepmerge'],
 )

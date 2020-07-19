@@ -21,6 +21,8 @@ from server.utils import (
 )
 import logging  # noqa: F401
 import re
+import hashlib
+
 
 logger = logging.getLogger(__file__)
 
@@ -80,10 +82,17 @@ def add_student():
     bytes_student_email = student_email.encode('utf-8')
     bytes_student_number = int_to_bytes(student_number)
 
+    hash_name = hashlib.sha512(bytes_student_name).digest()
+    hash_email = hashlib.sha512(bytes_student_email).digest()
+    hash_number = hashlib.sha512(bytes_student_number).digest()
+
     student_data = {
         'name': crypto.encrypt(bytes_student_name),
         'student_number': crypto.encrypt(bytes_student_number),
         'email': crypto.encrypt(bytes_student_email),
+        'hash_name': hash_name,
+        'hash_email': hash_email,
+        'hash_number': hash_number,
         'verified': False
     }
 
@@ -218,8 +227,8 @@ def submit_testimonial():
         name = data['name'].capitalize().split(' ')[0]
 
     testimonial = {
-        'encrypted_name': crypto.encrypt(bytes_student_name),
-        'student_number': crypto.encrypt(bytes_student_number),
+        'encrypted_name': hashlib.sha512(bytes_student_name).digest(),
+        'student_number': hashlib.sha512(bytes_student_number).digest(),
         'name': name,
         'program': data['program'],
         'year': data['year'],

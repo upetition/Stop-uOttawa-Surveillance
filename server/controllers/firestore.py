@@ -85,7 +85,7 @@ class FirestoreDriver(DatabaseDriver):
     def add_student(self, data):
         return self._add(
             data,
-            validation_fields=['email', 'student_number'],
+            validation_fields=['hash_email', 'hash_number'],
             client=self.database_client,
             metadata=self.metadata,
             check_unique=True,

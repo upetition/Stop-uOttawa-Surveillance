@@ -93,16 +93,16 @@ const TestimonialSubmit = () => {
         },
         body: JSON.stringify({
             name: name,
-            studentNumber: studentNumber,
+            student_number: parseInt(studentNumber),
             program: program,
             year: year,
-            comment: comment
+            testimonial: comment,
+            anonymous: anonymousCheck,
         }),
         method: "POST"
       }
 
-      // TODO: add new api here
-      const url = "/api/newAPIhere?";
+      const url = "/api/submit/testimonial";
 
       fetch(url, queryParams)
       .then(data => { return data.json()})

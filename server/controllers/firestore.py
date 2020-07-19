@@ -1,5 +1,6 @@
 from google.cloud import firestore
 from server.controllers.abc import DatabaseDriver
+from pydeepmerge import deep_merge
 
 
 class FirestoreDriver(DatabaseDriver):
@@ -20,6 +21,7 @@ class FirestoreDriver(DatabaseDriver):
         self,
         data,
         *,
+        validating_data=None,
         validation_fields,
         client,
         metadata,
@@ -28,8 +30,13 @@ class FirestoreDriver(DatabaseDriver):
         validation_client=None
     ):
         found_item = None
+        if validating_data is not None:
+            validate_against = deep_merge(data, validating_data)
+        else:
+            validate_against = data
+
         for field in validation_fields:
-            found_item = self._find({field, data[field]}, validation_client)
+            found_item = self._find({field, validate_against[field]}, validation_client)
 
             if check_unique and found_item is not None:
                 return None
@@ -86,8 +93,21 @@ class FirestoreDriver(DatabaseDriver):
         )
 
     def add_testimonial(self, data):
+        stored_data = {
+            'testimonial': data['testimonial'],
+            'program': data['program'],
+            'year': data['year'],
+            'first_name': data['name']
+        }
+
+        validation_data = {
+            'name': data['encrypted_name'],
+            'student_number': data['student_number']
+        }
+
         return self._add(
-            data,
+            stored_data,
+            validating_data=validation_data,
             validation_fields=['name', 'student_number'],
             client=self.testimonials,
             metadata=self.testimonials_metadata,

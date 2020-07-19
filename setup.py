@@ -13,5 +13,6 @@ setup(
         'cryptography',
         'flask-json-schema',
         'beautifulsoup4',
-        'pydeepmerge'],
+        'pydeepmerge',
+    ],
 )

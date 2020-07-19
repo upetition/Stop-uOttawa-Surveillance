@@ -204,7 +204,7 @@ def submit_testimonial():
     logger.debug(data)
 
     bytes_student_number = int_to_bytes(data['student_number'])
-    bytes_student_number = data['name'].encode('utf-8')
+    bytes_student_name = data['name'].encode('utf-8')
 
     name = ''
 
@@ -214,7 +214,7 @@ def submit_testimonial():
         name = data['name'].capitalize().split(' ')[0]
 
     testimonial = {
-        'encrypted_name': crypto.encrypt(bytes_student_number),
+        'encrypted_name': crypto.encrypt(bytes_student_name),
         'student_number': crypto.encrypt(bytes_student_number),
         'name': name,
         'program': data['program'],

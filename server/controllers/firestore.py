@@ -101,14 +101,14 @@ class FirestoreDriver(DatabaseDriver):
         }
 
         validation_data = {
-            'name': data['encrypted_name'],
-            'student_number': data['student_number']
+            'hash_name': data['encrypted_name'],
+            'hash_number': data['student_number']
         }
 
         return self._add(
             stored_data,
             validating_data=validation_data,
-            validation_fields=['name', 'student_number'],
+            validation_fields=['hash_name', 'hash_number'],
             client=self.testimonials,
             metadata=self.testimonials_metadata,
             check_exists=True,

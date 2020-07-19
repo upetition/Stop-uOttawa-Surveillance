@@ -114,7 +114,7 @@ def verify_student(_id):
     in the database.
     '''
     logger.info('Hit route %s', request.path)
-    updated = db.set_verified(_id)
+    updated = db.set_student_verified(_id)
 
     if updated:
         return jsonify({'msg': 'User verified successfully', 'verified': True})

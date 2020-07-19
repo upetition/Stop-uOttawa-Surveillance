@@ -58,5 +58,6 @@ if CONSTANTS['MAIL_PROVIDER'] == 'mailgun':
 
 if CONSTANTS['SOCIAL_PLATFORM'] == 'discord':
     social = DiscordDriver(
-        CONSTANTS['SOCIAL_API_URL']
+        CONSTANTS['SOCIAL_API_URL'],
+        CONSTANTS['TESTIMONIAL_API_URL'],
     )

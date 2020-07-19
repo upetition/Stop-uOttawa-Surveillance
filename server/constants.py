@@ -17,5 +17,6 @@ CONSTANTS = {
     'KEY': os.environ.get('SECRET_KEY'),
     'SOCIAL_PLATFORM': os.environ.get('SOCIAL_PLATFORM', None),
     'SOCIAL_API_URL': os.environ.get('SOCIAL_API_URL', None),
+    'TESTIMONIAL_API_URL': os.environ.get('TESTIMONIAL_API_URL', None),
     'MAINTAINER_EMAIL': os.environ.get('MAINTAINER_EMAIL', None),
 }

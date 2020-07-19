@@ -44,3 +44,6 @@ class SocialDriver:
 
     def post_comment(self, comment, **metadata):
         raise NotImplementedError()
+
+    def post_testimonial(self, testimonial, name, program, year, id_str):
+        raise NotImplementedError()

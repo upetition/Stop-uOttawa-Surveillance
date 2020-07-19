@@ -36,7 +36,7 @@ class FirestoreDriver(DatabaseDriver):
             validate_against = data
 
         for field in validation_fields:
-            found_item = self._find({field, validate_against[field]}, validation_client)
+            found_item = self._find({field: validate_against[field]}, validation_client)
 
             if check_unique and found_item is not None:
                 return None

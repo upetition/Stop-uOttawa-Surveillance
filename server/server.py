@@ -62,6 +62,10 @@ def add_student():
 
     student_name = data['student_name']
 
+    if re.search('anonymous', student_name):
+        error = jsonify({'error': 'Anonymous is not a valid name', 'created': False})
+        return make_response(error, 400)
+
     try:
         student_number = int(data['student_number'])
     except Exception:

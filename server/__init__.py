@@ -16,7 +16,7 @@ import os
 
 logging.basicConfig(
     format=f"[%(asctime)s] [{os.getpid()}] [%(levelname)s] - %(name)s - %(message)s",
-    level=logging.INFO,
+    level=logging.DEBUG,
     datefmt='%Y/%m/%d %H:%M:%S %z')
 
 logger = logging.getLogger(__file__)
@@ -58,5 +58,6 @@ if CONSTANTS['MAIL_PROVIDER'] == 'mailgun':
 
 if CONSTANTS['SOCIAL_PLATFORM'] == 'discord':
     social = DiscordDriver(
-        CONSTANTS['SOCIAL_API_URL']
+        CONSTANTS['SOCIAL_API_URL'],
+        CONSTANTS['TESTIMONIAL_API_URL']
     )

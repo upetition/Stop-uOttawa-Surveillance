@@ -4,6 +4,7 @@ from flask import (
     request,
     send_from_directory
 )
+from flask_json_schema import JsonValidationError
 from os.path import exists, join
 
 from server import (  # noqa: F401
@@ -178,6 +179,78 @@ def count_verified():
     count = db.count_records({'verified': True})
 
     return jsonify({'verified_count': count})
+
+
+@app.route('/submit/testimonial', methods=['POST'])
+@schema.validate({
+    'properties': {
+        'name': {'type': 'string'},
+        'student_number': {'type': 'number'},
+        'program': {'type': 'string'},
+        'year': {'type': 'string'},
+        'testimonial': {'type': 'string', 'maxLength': 1500},
+        'anonymous': {'type': 'boolean'}
+    },
+    'required': ['name', 'student_number', 'program', 'year', 'testimonial']
+})
+def submit_testimonial():
+    '''
+    Submit a testimonial to be approved by the team
+    '''
+    logger.info('Hit route %s', request.path)
+
+    data = request.get_json()
+
+    logger.debug(data)
+
+    bytes_student_number = int_to_bytes(data['student_number'])
+    bytes_student_number = data['name'].encode('utf-8')
+
+    name = ''
+
+    if data['anonymous'] is True:
+        name = 'Anonymous'
+    else:
+        name = data['name'].capitalize().split(' ')[0]
+
+    testimonial = {
+        'encrypted_name': crypto.encrypt(bytes_student_number),
+        'student_number': crypto.encrypt(bytes_student_number),
+        'name': name,
+        'program': data['program'],
+        'year': data['year'],
+        'testimonial': data['testimonial'],
+        'verified': False
+    }
+
+    _id = db.add_testimonial(testimonial)
+
+    if _id is None:
+        error = jsonify({'error': 'Could not submit testimonial', 'success': False})
+        return make_response(error, 400)
+
+    if social is not None:
+        social.post_testimonial(
+            name=name,
+            program=data['program'],
+            year=data['year'],
+            testimonial=data['testimonial'],
+            id_str=_id
+        )
+
+    return jsonify({'success': True})
+
+
+@app.errorhandler(JsonValidationError)
+def validation_error(e):
+    logger.debug(e)
+    return make_response(
+        jsonify({
+            'error': 'Problem validating data',
+            'errors': [validation_error.message for validation_error in e.errors]
+        }),
+        400
+    )
 
 
 # Error Handler

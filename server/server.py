@@ -87,7 +87,7 @@ def add_student():
         'verified': False
     }
 
-    _id = db.add(student_data)
+    _id = db.add_student(student_data)
 
     if _id is None:
         error = jsonify({

@@ -194,7 +194,7 @@ def count_verified():
     return jsonify({'verified_count': count})
 
 
-@app.route('/submit/testimonial', methods=['POST'])
+@app.route('/testimonial/submit', methods=['POST'])
 @schema.validate({
     'properties': {
         'name': {'type': 'string'},
@@ -252,6 +252,17 @@ def submit_testimonial():
         )
 
     return jsonify({'success': True})
+
+
+@app.route('/testimonials')
+def get_testimonials():
+    logger.info('Hit route %s', request.path)
+    try:
+        data = db.get_testimonials()
+    except Exception:
+        return jsonify({'success': False, 'error': 'Could not retrieve testimonials'})
+
+    return jsonify({'success': True, 'testimonials': data})
 
 
 @app.errorhandler(JsonValidationError)

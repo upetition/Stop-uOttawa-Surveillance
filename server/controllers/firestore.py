@@ -97,7 +97,8 @@ class FirestoreDriver(DatabaseDriver):
             'testimonial': data['testimonial'],
             'program': data['program'],
             'year': data['year'],
-            'first_name': data['name']
+            'first_name': data['name'],
+            'verified': data['verified']
         }
 
         validation_data = {
@@ -114,6 +115,21 @@ class FirestoreDriver(DatabaseDriver):
             check_exists=True,
             validation_client=self.database_client
         )
+
+    def get_testimonials(self):
+        result = []
+        testimonials = self.testimonials.where('verified', '==', True)
+        for item in testimonials.stream():
+            testimonial = item.get().to_dict()
+            relevant_data = {
+                'name': testimonial['first_name'],
+                'program': testimonial['program'],
+                'year': testimonial['year'],
+                'testimonial': testimonial['testimonial']
+            }
+            result.append(relevant_data)
+
+        return result
 
     def delete(self, identifier):
         document = self._find(identifier)

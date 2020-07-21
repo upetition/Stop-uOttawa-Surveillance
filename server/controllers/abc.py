@@ -11,6 +11,9 @@ class DatabaseDriver:
     def add_testimonial(self, data):
         raise NotImplementedError()
 
+    def get_testimonials(self):
+        raise NotImplementedError()
+
     def delete(self, data):
         raise NotImplementedError()
 

@@ -102,7 +102,7 @@ const TestimonialSubmit = () => {
         method: "POST"
       }
 
-      const url = "/api/submit/testimonial";
+      const url = "/api/testimonial/submit";
 
       fetch(url, queryParams)
       .then(data => { return data.json()})

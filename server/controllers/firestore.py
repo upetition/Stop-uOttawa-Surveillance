@@ -36,7 +36,7 @@ class FirestoreDriver(DatabaseDriver):
             validate_against = data
 
         for field in validation_fields:
-            found_item = self._find({field, validate_against[field]}, validation_client)
+            found_item = self._find({field: validate_against[field]}, validation_client)
 
             if check_unique and found_item is not None:
                 return None
@@ -85,7 +85,7 @@ class FirestoreDriver(DatabaseDriver):
     def add_student(self, data):
         return self._add(
             data,
-            validation_fields=['email', 'student_number'],
+            validation_fields=['hash_email', 'hash_number'],
             client=self.database_client,
             metadata=self.metadata,
             check_unique=True,
@@ -101,14 +101,14 @@ class FirestoreDriver(DatabaseDriver):
         }
 
         validation_data = {
-            'name': data['encrypted_name'],
-            'student_number': data['student_number']
+            'hash_name': data['encrypted_name'],
+            'hash_number': data['student_number']
         }
 
         return self._add(
             stored_data,
             validating_data=validation_data,
-            validation_fields=['name', 'student_number'],
+            validation_fields=['hash_name', 'hash_number'],
             client=self.testimonials,
             metadata=self.testimonials_metadata,
             check_exists=True,

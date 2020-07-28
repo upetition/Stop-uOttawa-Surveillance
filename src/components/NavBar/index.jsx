@@ -81,7 +81,7 @@ const NavBar = () => {
             Contact Us
           </MenuItem>
           <MenuItem component={Link} onClose={handleMenuClose(setAnchorContact)} to="/submit_testimonial">
-            Submit Testimonial
+            Add Your Voice
           </MenuItem>
         </Menu>
       </nav>

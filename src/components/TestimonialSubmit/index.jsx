@@ -135,7 +135,7 @@ const TestimonialSubmit = () => {
         <div className={`container ${styles.contentSize} pb-5`}>
             <div className="row pt-5 pb-2">
                 <h1>
-                    Submit a Testimonial
+                    Add Your Voice
                 </h1>
             </div>
             <Card
@@ -145,6 +145,7 @@ const TestimonialSubmit = () => {
                     <div className="row justify-content-left pb-3">
                         <p className={`${styles.caption}`}>
                             If you are a University of Ottawa student who has signed the petition, we would love to hear your thoughts! Comments submitted in this form will be subject to review by the uPetition team and, if they are accepted, will be displayed on our Testimonials page.<br /><br />
+                            We require the full name (used for the petition) and the student number to verify that you are a University of Ottawa student. Only your first name (or 'Anonymous' if selected) will be displayed. The comments are anonymized before even being subject to review, so while we can be certain that signators are students, you do not have to worry about us knowing who you are.<br /><br />
                             Note: Our Testimonials page is currently under construction, but the team is collecting student thoughts while we build!
                         </p>
                     </div>

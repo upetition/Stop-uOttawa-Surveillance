@@ -168,3 +168,6 @@ dmypy.json
 cython_debug/
 .mongoenv
 build.tar.gz
+
+.token
+certbot/

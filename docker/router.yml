@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  router:
+    build:
+      context: ..
+      dockerfile: docker/nginx.dockerfile
+    image: router
+    env_file:
+      - "../.env"
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - router
+
+networks:
+  router:
+    external:
+      name: router_router

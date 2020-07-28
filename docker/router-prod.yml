@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  router:
+    build:
+      context: ..
+      dockerfile: docker/nginx.dockerfile
+    image: router
+    volumes:
+      - ../certbot/conf:/etc/letsencrypt
+      - ../certbot/www:/var/www/certbot
+    env_file:
+      - "../.env"
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - router
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ../certbot/conf:/etc/letsencrypt
+      - ../certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot -d upetition.ca,www.upetition.ca --non-interactive --agree-tos -m upetitionca@gmail.com
+    networks:
+      - router
+    depends_on:
+      - router
+
+networks:
+  router:
+    external:
+      name: router_router

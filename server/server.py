@@ -236,13 +236,17 @@ def submit_testimonial():
         'verified': False
     }
 
+    logging.info("Attempting to insert testimonial with data %s" % testimonial)
+
     _id = db.add_testimonial(testimonial)
 
     if _id is None:
+        logging.info('Failed to submit testimonial %s' % testimonial)
         error = jsonify({'error': 'Could not submit testimonial', 'success': False})
         return make_response(error, 400)
 
     if social is not None:
+        logging.info('Posting testimonial to Discord')
         social.post_testimonial(
             name=name,
             program=data['program'],
@@ -251,6 +255,7 @@ def submit_testimonial():
             id_str=_id
         )
 
+    logging.info('Creation of testimonial was successful')
     return jsonify({'success': True})
 
 

@@ -5,6 +5,10 @@ services:
     image: mongo:latest
     env_file:
       - ../.mongoenv
-  backend:
-    depends_on:
-      - mongodb
+    networks:
+      - router
+
+networks:
+  router:
+    external:
+      name: router_router

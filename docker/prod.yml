@@ -2,5 +2,19 @@ version: '3'
 
 services:
   frontend:
-    build:
-      dockerfile: docker/frontend.prod.dockerfile
+    image: docker.pkg.github.com/upetition/stop-uottawa-surveillance/upetition-frontend:latest
+    env_file:
+      - "../.env"
+    networks:
+      - router
+  backend:
+    image: docker.pkg.github.com/upetition/stop-uottawa-surveillance/upetition-backend:latest
+    env_file:
+      - "../.flaskenv"
+    networks:
+      - router
+
+networks:
+  router:
+    external:
+      name: router_router

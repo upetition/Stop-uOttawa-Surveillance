@@ -6,6 +6,6 @@ COPY nginx /etc/nginx
 
 RUN mkdir /etc/nginx/sites-enabled
 
-RUN cp /etc/nginx/sites-available/* /etc/nginx/sites-enabled/
+COPY scripts/ /scripts
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/scripts/run-router.sh"]

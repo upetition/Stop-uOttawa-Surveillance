@@ -24,8 +24,6 @@ services:
     command: certonly --webroot -w /var/www/certbot -d upetition.ca,www.upetition.ca --non-interactive --agree-tos -m upetitionca@gmail.com
     networks:
       - router
-    depends_on:
-      - router
 
 networks:
   router:

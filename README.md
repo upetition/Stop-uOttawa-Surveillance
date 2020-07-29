@@ -1,5 +1,5 @@
 ﻿## Status
-[![python](https://github.com/upetition/Stop-uOttawa-Surveillance/workflows/python/badge.svg)](https://github.com/upetition/Stop-uOttawa-Surveillance/actions?query=workflow%3Apython)
+[![python](https://github.com/upetition/Stop-uOttawa-Surveillance/workflows/python/badge.svg)](https://github.com/upetition/Stop-uOttawa-Surveillance/actions?query=workflow%3Apython) [![deploy](https://img.shields.io/github/workflow/status/upetition/Stop-uOttawa-Surveillance/Docker?label=deploy)](https://github.com/upetition/Stop-uOttawa-Surveillance/actions?query=workflow%3ADocker)
 
 ## Getting Started
 

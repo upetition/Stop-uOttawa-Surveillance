@@ -38,6 +38,9 @@ jobs:
       - name: Use example env files as testing env files
         run: cp .flaskenv.example .flaskenv && cp .env.example .env
 
+      - name: Ensure network is built
+        run: docker network create --driver bridge router_router || true
+
       - name: Build the backend container with compose
         run: docker-compose -f docker/docker-compose.yml build backend
 
@@ -45,8 +48,8 @@ jobs:
         run: docker-compose -f docker/docker-compose.yml build frontend
 
       - name: Build the router container with compose
-        run: docker-compose -f docker/docker-compose.yml build router
+        run: docker-compose -f docker/router.yml build router
 
       - name: Perform cleanup
         if: ${{ always() }}
-        run: docker-compose -f docker/docker-compose.yml down --rmi all
+        run: docker-compose -f docker/router.yml -f docker/docker-compose.yml down --rmi all && docker network prune -f

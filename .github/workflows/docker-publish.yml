@@ -102,4 +102,7 @@ jobs:
 
       - name: Trigger deploy process
         run: |
-          gcloud -q compute ssh ${{ secrets.GCE_INSTANCE }} --command=./run-deploy.sh
+          gcloud -q compute ssh ${{ secrets.GCE_INSTANCE }} --zone ${{ secrets.GCE_ZONE }} --command=./run-deploy.sh
+
+      - name: Clean up keys
+        run: rm ~/.ssh/*

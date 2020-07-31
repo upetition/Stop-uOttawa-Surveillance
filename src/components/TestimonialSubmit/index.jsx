@@ -19,7 +19,6 @@ function Alert(props) {
 
 const TestimonialSubmit = () => {
   const [name, setName] = useState("");
-  const [studentNumber, setStudentNumber] = useState("");
   const [program, setProgram] = useState("");
   const [year, setYear] = useState("");
   const [anonymousCheck, setAnonymousCheck] = useState(false);
@@ -32,8 +31,7 @@ const TestimonialSubmit = () => {
   const MAX_CHARS = 1500;
 
   const enableSubmit = (
-    name !== "" &&
-    studentNumber !== "" &&
+    (name !== "" || anonymousCheck) &&
     program !== "" &&
     year !== "" &&
     comment !== "" &&
@@ -93,7 +91,6 @@ const TestimonialSubmit = () => {
         },
         body: JSON.stringify({
             name: name,
-            student_number: parseInt(studentNumber),
             program: program,
             year: year,
             testimonial: comment,
@@ -145,28 +142,19 @@ const TestimonialSubmit = () => {
                     <div className="row justify-content-left pb-3">
                         <p className={`${styles.caption}`}>
                             If you are a University of Ottawa student who has signed the petition, we would love to hear your thoughts! Comments submitted in this form will be subject to review by the uPetition team and, if they are accepted, will be displayed on our Student Voices page.<br /><br />
-                            We require the full name (used for the petition) and the student number to verify that you are a University of Ottawa student. Only your first name (or 'Anonymous' if selected) will be displayed. The comments are anonymized before even being subject to review, so while we can be certain that signators are students, you do not have to worry about us knowing who you are.<br /><br />
+                            We require the full name (used for the petition) and the student number to verify that you are a University of Ottawa student. Only your first name (or &apos;Anonymous&apos; if selected) will be displayed. The comments are anonymized before even being subject to review, so while we can be certain that signators are students, you do not have to worry about us knowing who you are.<br /><br />
                             Note: Our Student Voices page is currently under construction, but the team is collecting student thoughts while we build!
                         </p>
                     </div>
                     <div className="row justify-content-center p-0 pb-3">
-                    <div className="col-sm-12 col-md-6">
+                    <div className="col-sm-12">
                         <TextField
                         required
                         label="Name"
-                        value={name}
+                        value={(anonymousCheck && 'Anonymous') || name}
                         fullWidth
                         onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="col-sm-12 col-md-6">
-                        <TextField
-                        required
-                        label="Student Number"
-                        value={studentNumber}
-                        type="number"
-                        fullWidth
-                        onChange={(e) => setStudentNumber(e.target.value)}
+                        disabled={anonymousCheck}
                         />
                     </div>
                     </div>
@@ -200,7 +188,7 @@ const TestimonialSubmit = () => {
                     <div className="row justify-content-center">
                     <TextField
                         required
-                        label="Testimonial"
+                        label="Message"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         multiline

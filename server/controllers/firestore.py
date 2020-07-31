@@ -101,20 +101,6 @@ class FirestoreDriver(DatabaseDriver):
             'verified': data['verified']
         }
 
-        validation_data = {
-            'hash_name': data['encrypted_name'],
-            'hash_number': data['student_number'],
-            'verified': True
-        }
-
-        record = self._find(validation_data, self.database_client)
-
-        if record is None:
-            return None
-
-        # Data is pre-validated since validation requires some reworking for
-        # existence check...
-        # https://github.com/upetition/Stop-uOttawa-Surveillance/issues/64
         return self._add(
             stored_data,
             validation_fields=[],

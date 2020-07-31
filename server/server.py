@@ -198,7 +198,6 @@ def count_verified():
 @schema.validate({
     'properties': {
         'name': {'type': 'string'},
-        'student_number': {'type': 'number'},
         'program': {'type': 'string'},
         'year': {'type': 'string'},
         'testimonial': {'type': 'string', 'maxLength': 1500},

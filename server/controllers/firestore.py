@@ -22,7 +22,7 @@ class FirestoreDriver(DatabaseDriver):
         data,
         *,
         validating_data=None,
-        validation_fields,
+        validation_fields=None,
         client,
         metadata,
         check_unique=False,
@@ -34,14 +34,14 @@ class FirestoreDriver(DatabaseDriver):
             validate_against = deep_merge(data, validating_data)
         else:
             validate_against = data
+        if validation_fields is not None:
+            for field in validation_fields:
+                found_item = self._find({field: validate_against[field]}, validation_client)
 
-        for field in validation_fields:
-            found_item = self._find({field: validate_against[field]}, validation_client)
-
-            if check_unique and found_item is not None:
-                return None
-            if check_exists and found_item is None:
-                return None
+                if check_unique and found_item is not None:
+                    return None
+                if check_exists and found_item is None:
+                    return None
 
         _, doc_ref = client.add(data)
         metadata.update({
@@ -103,7 +103,6 @@ class FirestoreDriver(DatabaseDriver):
 
         return self._add(
             stored_data,
-            validation_fields=[],
             client=self.testimonials,
             metadata=self.testimonials_metadata,
             check_exists=True,

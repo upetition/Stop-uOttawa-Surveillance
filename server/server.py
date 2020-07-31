@@ -277,6 +277,15 @@ def validation_error(e):
 
 
 # Error Handler
+@app.errorhandler(400)
+def bad_request(error):
+    logger.info('Hit route %s', request.path)
+    logger.info('Request data: %s', request.get_json())
+    json_response = jsonify({'error': 'Something went wrong'})
+    return make_response(json_response, 400)
+
+
+# Error Handler
 @app.errorhandler(404)
 def page_not_found(error):
     logger.info('Hit route %s', request.path)

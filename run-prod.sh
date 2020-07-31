@@ -10,4 +10,4 @@ docker-compose -f docker/prod.yml up -d backend;
 docker-compose -f docker/prod.yml pull frontend;
 docker-compose -f docker/prod.yml up -d frontend;
 # Certbot stuff is a little funky right now so let's shelve that
-# docker-compose -f docker/router-prod.yml run certbot renew;
+docker-compose -f docker/router-prod.yml run certbot renew;

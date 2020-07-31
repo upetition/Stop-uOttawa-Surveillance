@@ -203,7 +203,7 @@ def count_verified():
         'testimonial': {'type': 'string', 'maxLength': 1500},
         'anonymous': {'type': 'boolean'}
     },
-    'required': ['name', 'student_number', 'program', 'year', 'testimonial']
+    'required': ['name', 'program', 'year', 'testimonial']
 })
 def submit_testimonial():
     '''

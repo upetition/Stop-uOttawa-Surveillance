@@ -113,7 +113,7 @@ class FirestoreDriver(DatabaseDriver):
         result = []
         testimonials = self.testimonials.where('verified', '==', True)
         for item in testimonials.stream():
-            testimonial = item.get().to_dict()
+            testimonial = item.to_dict()
             relevant_data = {
                 'name': testimonial['first_name'],
                 'program': testimonial['program'],

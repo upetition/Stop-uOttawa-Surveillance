@@ -24,7 +24,7 @@ const TestimonialCard = ({name, comment, program, year}) => {
                     {`"${comment}"`}
                 </Typography>
                 <Typography variant="body1" className="pt-3" color="textSecondary">
-                    {`–${<span>&nbsp;</span>} ${name}, ${yearCanonicalVariant[year]} ${program}`}
+                    {`–`}&nbsp; {`${name}, ${yearCanonicalVariant[year]} ${program}`}
                 </Typography>
             </CardContent>
         </Card>

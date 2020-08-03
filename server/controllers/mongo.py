@@ -26,7 +26,15 @@ class MongoDriver(DatabaseDriver):
         return _id
 
     def get_testimonials(self):
-        return [item for item in self.testimonials.find({'verified': True})]
+        items = []
+        for item in self.testimonials.find({'verified': True}):
+            items.append({
+                'name': item['name'],
+                'year': item['year'],
+                'program': item['program'],
+                'testimonial': item['testimonial']
+            })
+        return items
 
     def _update(self, identifier: dict, update: dict, client):
         result = client.update_one(
@@ -51,3 +59,7 @@ class MongoDriver(DatabaseDriver):
 
     def delete(self, data):
         self.database_client.delete_one(data)
+
+    def set_all_testimonials_verified(self):
+        identifier = {}
+        self.testimonials.update_many(identifier, {'$set': {'verified': True}})

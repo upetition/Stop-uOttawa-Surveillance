@@ -20,6 +20,8 @@ import TestimonialSubmit from "./components/TestimonialSubmit";
 
 import Analysis from "./components/Analysis";
 
+import Testimonials from "./components/Testimonial";
+
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
     return (
@@ -34,6 +36,7 @@ const App = () => {
           <Route path = "/Contact" component = { ContactUs } />
           <Route path = "/Analysis" component = { Analysis } />
           <Route path = "/Submit_Testimonial" component = { TestimonialSubmit } />
+          <Route path = "/student_voices" component = { Testimonials } />
         </Switch>
         <Footer />
       </React.Fragment>

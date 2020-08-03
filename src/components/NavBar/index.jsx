@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { Button, Menu, MenuItem } from "@material-ui/core";
+import PropTypes from 'prop-types';
 
 //TODO Web Template Studio: Add a new link in the NavBar for your page here.
 // A skip link is included as an accessibility best practice. For more information visit https://www.w3.org/WAI/WCAG21/Techniques/general/G1.
@@ -16,6 +17,12 @@ const ButtonLink = ({ to, className, children }) => {
     {children}
   </Button>
   );
+}
+
+ButtonLink.propTypes = {
+  to: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node
 }
 
 const NavBar = () => {
@@ -67,6 +74,9 @@ const NavBar = () => {
           </MenuItem>
           <MenuItem component={Link} onClose={handleMenuClose(setAnchorResource)} to="/analysis">
             Policy Analysis
+          </MenuItem>
+          <MenuItem component={Link} onClose={handleMenuClose(setAnchorResource)} to="/student_voices">
+            Student Voices
           </MenuItem>
         </Menu>
         <Menu

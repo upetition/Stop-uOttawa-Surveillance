@@ -1,0 +1,9 @@
+.contentSize {
+    max-width: 600px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caption {
+    font-size: 12pt;
+}

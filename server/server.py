@@ -239,6 +239,7 @@ def submit_testimonial():
         error = jsonify({'error': 'Could not submit testimonial', 'success': False})
         return make_response(error, 400)
 
+    social = None
     if social is not None:
         logging.info('Posting testimonial to Discord')
         social.post_testimonial(

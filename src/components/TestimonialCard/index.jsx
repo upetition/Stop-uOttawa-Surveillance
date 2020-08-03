@@ -17,11 +17,15 @@ const TestimonialCard = ({name, comment, program, year}) => {
         'phd': 'Doctoral candidate of'
     }
 
+    const commentHTML = `"${comment}"`;
+
+    const commentDiv = <div dangerouslySetInnerHTML={{__html: commentHTML}} />;
+
     return (
         <Card>
             <CardContent>
                 <Typography variant="body1">
-                    {`"${comment}"`}
+                    {commentDiv}
                 </Typography>
                 <Typography variant="body1" className="pt-3" color="textSecondary">
                     {`–`}&nbsp; {`${name}, ${yearCanonicalVariant[year]} ${program}`}

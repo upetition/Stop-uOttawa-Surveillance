@@ -261,6 +261,9 @@ def get_testimonials():
     except Exception:
         return jsonify({'success': False, 'error': 'Could not retrieve testimonials'})
 
+    for item in data:
+        item['testimonial'] = item['testimonial'].replace('\n', '<br />')
+
     return jsonify({'success': True, 'testimonials': data})
 
 

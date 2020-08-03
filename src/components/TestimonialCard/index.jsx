@@ -17,9 +17,7 @@ const TestimonialCard = ({name, comment, program, year}) => {
         'phd': 'Doctoral candidate of'
     }
 
-    const commentHTML = `"${comment}"`;
-
-    const commentDiv = <div dangerouslySetInnerHTML={{__html: commentHTML}} />;
+    const commentDiv = <div dangerouslySetInnerHTML={{__html: comment}} />;
 
     return (
         <Card>
